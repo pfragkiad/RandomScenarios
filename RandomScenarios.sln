@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoqHttpClient.Extensions", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomOrg.Extensions", "RandomOrg.Extensions\RandomOrg.Extensions.csproj", "{BE03F4F2-027D-4969-B86D-6867C48BAF8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomScenariosTests", "RandomScenariosTests\RandomScenariosTests.csproj", "{AC1283AF-0AE6-44AC-B6DA-7ADDFFD2BA43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BE03F4F2-027D-4969-B86D-6867C48BAF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE03F4F2-027D-4969-B86D-6867C48BAF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE03F4F2-027D-4969-B86D-6867C48BAF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1283AF-0AE6-44AC-B6DA-7ADDFFD2BA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1283AF-0AE6-44AC-B6DA-7ADDFFD2BA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1283AF-0AE6-44AC-B6DA-7ADDFFD2BA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1283AF-0AE6-44AC-B6DA-7ADDFFD2BA43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

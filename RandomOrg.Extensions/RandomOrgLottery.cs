@@ -1,24 +1,7 @@
-﻿using Castle.Core.Logging;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace RandomOrg;
-
-public record LotteryTicket(int[] FirstSet, int[] SecondSet)
-{
-    public override string ToString()
-    {
-        string s = string.Join("-", FirstSet.Select(n => $"{n:00}"));
-        if (SecondSet.Any()) s += " | " + string.Join("-", SecondSet.Select(n => $"{n:00}"));
-        return s;
-    }
-}
+namespace RandomOrg.Extensions;
 
 public class RandomOrgLottery
 {
@@ -31,13 +14,15 @@ public class RandomOrgLottery
     //}
 
     public const string ClientName = "random.org";
-    public const string BaseAddress =  "https://www.random.org/quick-pick";
+    public const string BaseAddress = "https://www.random.org/quick-pick";
 
     public RandomOrgLottery(
-        IHttpClientFactory httpClientFactory,
+        //IHttpClientFactory httpClientFactory,
+        HttpClient httpClient,
         ILogger<RandomOrgLottery> logger)
     {
-        _httpClient = httpClientFactory.CreateClient(ClientName);
+        // _httpClient = httpClientFactory.CreateClient(ClientName);
+        _httpClient = httpClient;
         _logger = logger;
     }
 

@@ -16,11 +16,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoqHttpClientFactory\MoqHttpClient.Extensions.csproj" />
+    <ProjectReference Include="..\RandomOrg.Extensions\RandomOrg.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

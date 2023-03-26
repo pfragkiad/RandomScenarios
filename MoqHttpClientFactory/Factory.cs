@@ -10,7 +10,7 @@ public static class Factory
 
     public static Mock<IHttpClientFactory> GetMockHttpClientFactory(
       Dictionary<string, string> clientNameToContent,
-      Dictionary<string, string>? clientNameToBaseAddress = null)
+      Dictionary<string, string?>? clientNameToBaseAddress = null)
     {
         var mockFactory = new Mock<IHttpClientFactory>();
 

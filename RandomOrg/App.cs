@@ -12,6 +12,11 @@ using Moq.Protected;
 using Moq;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
+using RandomOrg.Extensions;
+using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
+
+using MoqHttpClient.Extensions;
 
 namespace RandomOrg;
 
@@ -27,7 +32,7 @@ public class App
 
     public static IHost GetApp(string[] args)
     {
-        return GetApp(args,(context, services) =>
+        return GetApp(args, (context, services) =>
         {
             //create a httpclientfactory (named)
             services
@@ -44,14 +49,20 @@ public class App
 
     public static IHost GetTestApp(string[] args)
     {
-        var moqFactory = MoqHttpClient.Extensions.Factory.GetMockHttpClientFactory(
-            new Dictionary<string, string> { { RandomOrgLottery.ClientName, @"..\..\..\samples\sample1.html" } },
-            new Dictionary<string, string> { { RandomOrgLottery.ClientName, RandomOrgLottery.BaseAddress } });
-
         return GetApp(args, (context, services) =>
         {
-            services.AddScoped(s => new RandomOrgLottery(
-                moqFactory.Object, s.GetRequiredService<ILogger<RandomOrgLottery>>()))
+            var config = context.Configuration;
+
+            //string basePath = config["BasePath"];
+            //string sample1 = config["Samples:0"];
+
+            //SampleOptions options= new SampleOptions();
+            //config.Bind(options);
+
+            //SampleOptions options = config.Get<SampleOptions>()!;
+
+            services.Configure<SampleOptions>(config.GetSection(SampleOptions.SampleOptionsSection));
+            services.AddScoped<RandomOrgLotterySampleFactory>();
             ;
         })
         ;
