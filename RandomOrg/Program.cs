@@ -27,7 +27,6 @@ internal class Program
         var app = App.GetTestApp(args);
         var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
-
         var lotteryFactory = app.Services.GetService<RandomOrgLotterySampleFactory>();
         if (lotteryFactory is null)
         {
@@ -43,13 +42,11 @@ internal class Program
             return;
         }
 
-
         if (options.Samples is null || !options.Samples.Any())
         {
             logger.LogCritical("No sample files have been defined.");
             return;
         }
-
 
         foreach (string tag in options.Samples.Select(s => s.Tag))
         {
@@ -63,11 +60,24 @@ internal class Program
         }
     }
 
-
     static async Task Main(string[] args)
     {
-        //var app = App.GetApp(args);
-        await SampleTests(args);
+        //await SampleTests(args);
+
+        var app = App.GetApp(args);
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+        var lottery = app.Services.GetRequiredService<RandomOrgLottery>();
+
+        Console.Write("Select the number of tickets: ");
+        string? response = Console.ReadLine();
+        int value = 2;
+        if(!int.TryParse(response, out value))
+            logger.LogWarning("Could not parse response. {v} is assumed!",value);
+
+        var tickets = await lottery.GetTzokerTickets(value);
+        for (int i = 0; i < tickets.Count; i++)
+            logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
 
     }
 }

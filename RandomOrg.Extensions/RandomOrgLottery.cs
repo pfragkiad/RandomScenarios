@@ -14,7 +14,7 @@ public class RandomOrgLottery
     //}
 
     public const string ClientName = "random.org";
-    public const string BaseAddress = "https://www.random.org/quick-pick";
+    public const string BaseAddress = "https://www.random.org/quick-pick/";
 
     public RandomOrgLottery(
         //IHttpClientFactory httpClientFactory,
@@ -87,7 +87,7 @@ public class RandomOrgLottery
         }
         return tickets;
     }
-
+    //https://www.random.org/quick-pick/?tickets=2&lottery=5x45.1x20
     public async Task<List<LotteryTicket>> GetTzokerTickets(int ticketsCount) =>
        await GetTickets(ticketsCount, 45, 5, 20, 1);
 
@@ -98,7 +98,9 @@ public class RandomOrgLottery
         int firstSetMax, int firstSetCount,
         int secondSetMax, int secondSetCount)
     {
-        string query = $"/?tickets={ticketsCount}&lottery={firstSetCount}x{firstSetMax}.{secondSetCount}x{secondSetMax}";
+        //     "https://www.random.org/quick-pick/?tickets=2&lottery=5x45.1x20";
+
+        string query = $"?tickets={ticketsCount}&lottery={firstSetCount}x{firstSetMax}.{secondSetCount}x{secondSetMax}";
 
         List<LotteryTicket> tickets = new List<LotteryTicket>();
 
