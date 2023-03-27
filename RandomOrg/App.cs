@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using RandomOrg.Extensions;
 
 using MoqHttpClient.Extensions;
+using Serilog;
 
 namespace RandomOrg;
 
@@ -11,8 +12,41 @@ public class App
     public static IHost GetApp(string[]? args, Action<HostBuilderContext, IServiceCollection> AddServices)
     {
         IHostBuilder builder = Host.CreateDefaultBuilder(args);
-        builder.ConfigureServices(AddServices);
+        builder
+            .ConfigureServices(AddServices)
+            .UseSerilog((context, configuration) =>
+        {
+            //NUGET: Serial.Settings.Configuration
+            //for configuration see: https://github.com/serilog/serilog-settings-configuration
+            configuration.ReadFrom.Configuration(context.Configuration); //read Serilog options from appsettings.json
+
+            //configuration.MinimumLevel.Debug();
+            //configuration.WriteTo.Console(restrictedToMinimumLevel:Serilog.Events.LogEventLevel.Information);
+            //configuration.WriteTo.File(path: "logs/myapp.txt", rollingInterval: RollingInterval.Hour);
+        }); //I;
         return builder.Build();
+    }
+
+    public static IHost GetTestApp(string[] args)
+    {
+        return GetApp(args, (context, services) =>
+        {
+            var config = context.Configuration;
+
+            //string basePath = config["BasePath"];
+            //string sample1 = config["Samples:0"];
+
+            //SampleOptions options= new SampleOptions();
+            //config.Bind(options);
+
+            //SampleOptions options = config.Get<SampleOptions>()!;
+
+            services.Configure<SampleOptions>(config.GetSection(SampleOptions.SampleOptionsSection));
+
+            //the sample factory is responsible to retrieve the randomorglottery based on instances of httpclients
+            services.AddScoped<RandomOrgLotterySampleFactory>();
+
+        });
     }
 
 
@@ -31,25 +65,5 @@ public class App
         });
     }
 
-    public static IHost GetTestApp(string[] args)
-    {
-        return GetApp(args, (context, services) =>
-        {
-            var config = context.Configuration;
-
-            //string basePath = config["BasePath"];
-            //string sample1 = config["Samples:0"];
-
-            //SampleOptions options= new SampleOptions();
-            //config.Bind(options);
-
-            //SampleOptions options = config.Get<SampleOptions>()!;
-
-            services.Configure<SampleOptions>(config.GetSection(SampleOptions.SampleOptionsSection));
-            services.AddScoped<RandomOrgLotterySampleFactory>();
-
-        })
-        ;
-    }
 }
 

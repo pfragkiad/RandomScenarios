@@ -1,0 +1,2389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>RANDOM.ORG - Lottery Quick Pick</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" />
+  <!--[if IE]>
+  <link rel="stylesheet" type="text/css" href="/css/iestyle.css" media="all" />
+  <![endif]-->
+<meta name="application-name" content="RANDOM.ORG" />
+<link rel="apple-touch-icon" sizes="72x72" href="/graphics/touch/app-touch-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/graphics/touch/app-touch-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/graphics/touch/app-touch-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/graphics/touch/app-touch-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/graphics/touch/app-touch-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/graphics/touch/app-touch-152x152.png" />
+<link rel="apple-touch-icon" href="/graphics/touch/app-touch-full.png" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="Keywords" content="true random numbers" />
+  <meta name="description" content="This page allows you to quick pick lottery tickets using true randomness, which for many purposes is better than the pseudo-random number algorithms typically used in computer programs." />
+  <meta name="author" content="Mads Haahr" />
+  <script type="text/javascript" src="/js/random.js"></script>
+  <script type="text/javascript" src="//www.random.org/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/js/simpledropdown.jquery.js"></script>
+<script type="text/javascript" language="JavaScript"><!--
+var lotNames = new Array();
+var lotCountries = new Array();
+var lotConfigurations = new Array();
+lotNames[0] = "Super Lotto";
+lotCountries[0] = "Anguilla";
+lotConfigurations[0] = "5x35.1x10";
+lotNames[1] = "Super Lotto";
+lotCountries[1] = "Antigua and Barbuda";
+lotConfigurations[1] = "5x35.1x10";
+lotNames[2] = "Gold Lotto (Qld)";
+lotCountries[2] = "Australia";
+lotConfigurations[2] = "6x45.0x0";
+lotNames[3] = "Keno - Pick  1";
+lotCountries[3] = "Australia";
+lotConfigurations[3] = "1x80.0x0";
+lotNames[4] = "Keno - Pick  2";
+lotCountries[4] = "Australia";
+lotConfigurations[4] = "2x80.0x0";
+lotNames[5] = "Keno - Pick  3";
+lotCountries[5] = "Australia";
+lotConfigurations[5] = "3x80.0x0";
+lotNames[6] = "Keno - Pick  4";
+lotCountries[6] = "Australia";
+lotConfigurations[6] = "4x80.0x0";
+lotNames[7] = "Keno - Pick  5";
+lotCountries[7] = "Australia";
+lotConfigurations[7] = "5x80.0x0";
+lotNames[8] = "Keno - Pick  6";
+lotCountries[8] = "Australia";
+lotConfigurations[8] = "6x80.0x0";
+lotNames[9] = "Keno - Pick  7";
+lotCountries[9] = "Australia";
+lotConfigurations[9] = "7x80.0x0";
+lotNames[10] = "Keno - Pick  8";
+lotCountries[10] = "Australia";
+lotConfigurations[10] = "8x80.0x0";
+lotNames[11] = "Keno - Pick  9";
+lotCountries[11] = "Australia";
+lotConfigurations[11] = "9x80.0x0";
+lotNames[12] = "Keno - Pick 10";
+lotCountries[12] = "Australia";
+lotConfigurations[12] = "10x80.0x0";
+lotNames[13] = "Keno - Pick 11";
+lotCountries[13] = "Australia";
+lotConfigurations[13] = "11x80.0x0";
+lotNames[14] = "Keno - Pick 12";
+lotCountries[14] = "Australia";
+lotConfigurations[14] = "12x80.0x0";
+lotNames[15] = "Monday Lotto";
+lotCountries[15] = "Australia";
+lotConfigurations[15] = "6x45.0x0";
+lotNames[16] = "Oz Lotto";
+lotCountries[16] = "Australia";
+lotConfigurations[16] = "7x47.0x0";
+lotNames[17] = "Powerball";
+lotCountries[17] = "Australia";
+lotConfigurations[17] = "7x35.1x20";
+lotNames[18] = "Saturday Lotto (NSW, WA)";
+lotCountries[18] = "Australia";
+lotConfigurations[18] = "6x45.0x0";
+lotNames[19] = "Set for Life";
+lotCountries[19] = "Australia";
+lotConfigurations[19] = "7x44.0x0";
+lotNames[20] = "Tattslotto (Vic, Tas, ACT, NT)";
+lotCountries[20] = "Australia";
+lotConfigurations[20] = "6x45.0x0";
+lotNames[21] = "The Pools";
+lotCountries[21] = "Australia";
+lotConfigurations[21] = "6x38.0x0";
+lotNames[22] = "Wednesday Lotto";
+lotCountries[22] = "Australia";
+lotConfigurations[22] = "6x45.0x0";
+lotNames[23] = "X Lotto (SA)";
+lotCountries[23] = "Australia";
+lotConfigurations[23] = "6x45.0x0";
+lotNames[24] = "EuroMillions";
+lotCountries[24] = "Austria";
+lotConfigurations[24] = "5x50.2x12";
+lotNames[25] = "EuroMillions HotPicks - Pick 1";
+lotCountries[25] = "Austria";
+lotConfigurations[25] = "1x50.0x0";
+lotNames[26] = "EuroMillions HotPicks - Pick 2";
+lotCountries[26] = "Austria";
+lotConfigurations[26] = "2x50.0x0";
+lotNames[27] = "EuroMillions HotPicks - Pick 3";
+lotCountries[27] = "Austria";
+lotConfigurations[27] = "3x50.0x0";
+lotNames[28] = "EuroMillions HotPicks - Pick 4";
+lotCountries[28] = "Austria";
+lotConfigurations[28] = "4x50.0x0";
+lotNames[29] = "EuroMillions HotPicks - Pick 5";
+lotCountries[29] = "Austria";
+lotConfigurations[29] = "5x50.0x0";
+lotNames[30] = "Lotto";
+lotCountries[30] = "Austria";
+lotConfigurations[30] = "6x45.0x0";
+lotNames[31] = "Double Draw - 1 Spot";
+lotCountries[31] = "Barbados";
+lotConfigurations[31] = "1x30.0x0";
+lotNames[32] = "Double Draw - 2 Spots";
+lotCountries[32] = "Barbados";
+lotConfigurations[32] = "2x30.0x0";
+lotNames[33] = "Double Draw - 3 Spots";
+lotCountries[33] = "Barbados";
+lotConfigurations[33] = "3x30.0x0";
+lotNames[34] = "Double Draw - 4 Spots";
+lotCountries[34] = "Barbados";
+lotConfigurations[34] = "4x30.0x0";
+lotNames[35] = "Double Draw - 5 Spots";
+lotCountries[35] = "Barbados";
+lotConfigurations[35] = "5x30.0x0";
+lotNames[36] = "Double Draw - 6 Spots";
+lotCountries[36] = "Barbados";
+lotConfigurations[36] = "6x30.0x0";
+lotNames[37] = "Double Draw - 7 Spots";
+lotCountries[37] = "Barbados";
+lotConfigurations[37] = "7x30.0x0";
+lotNames[38] = "Doubles";
+lotCountries[38] = "Barbados";
+lotConfigurations[38] = "2x26.2x26";
+lotNames[39] = "Mega 6";
+lotCountries[39] = "Barbados";
+lotConfigurations[39] = "6x33.0x0";
+lotNames[40] = "Super Lotto";
+lotCountries[40] = "Barbados";
+lotConfigurations[40] = "5x35.1x10";
+lotNames[41] = "Super Lotto";
+lotCountries[41] = "Barbados";
+lotConfigurations[41] = "5x35.1x10";
+lotNames[42] = "EuroMillions";
+lotCountries[42] = "Belgium";
+lotConfigurations[42] = "5x50.2x12";
+lotNames[43] = "EuroMillions HotPicks - Pick 1";
+lotCountries[43] = "Belgium";
+lotConfigurations[43] = "1x50.0x0";
+lotNames[44] = "EuroMillions HotPicks - Pick 2";
+lotCountries[44] = "Belgium";
+lotConfigurations[44] = "2x50.0x0";
+lotNames[45] = "EuroMillions HotPicks - Pick 3";
+lotCountries[45] = "Belgium";
+lotConfigurations[45] = "3x50.0x0";
+lotNames[46] = "EuroMillions HotPicks - Pick 4";
+lotCountries[46] = "Belgium";
+lotConfigurations[46] = "4x50.0x0";
+lotNames[47] = "EuroMillions HotPicks - Pick 5";
+lotCountries[47] = "Belgium";
+lotConfigurations[47] = "5x50.0x0";
+lotNames[48] = "Lotto";
+lotCountries[48] = "Belgium";
+lotConfigurations[48] = "6x45.0x0";
+lotNames[49] = "Loto 5 sur 90";
+lotCountries[49] = "Benin";
+lotConfigurations[49] = "5x90.0x0";
+lotNames[50] = "Loto Fortune";
+lotCountries[50] = "Benin";
+lotConfigurations[50] = "5x90.0x0";
+lotNames[51] = "Star Loto";
+lotCountries[51] = "Benin";
+lotConfigurations[51] = "5x90.0x0";
+lotNames[52] = "Dia de Sorte -  7 números";
+lotCountries[52] = "Brazil";
+lotConfigurations[52] = "7x31.1x12";
+lotNames[53] = "Dia de Sorte -  8 números";
+lotCountries[53] = "Brazil";
+lotConfigurations[53] = "8x31.1x12";
+lotNames[54] = "Dia de Sorte -  9 números";
+lotCountries[54] = "Brazil";
+lotConfigurations[54] = "9x31.1x12";
+lotNames[55] = "Dia de Sorte - 10 números";
+lotCountries[55] = "Brazil";
+lotConfigurations[55] = "10x31.1x12";
+lotNames[56] = "Dia de Sorte - 11 números";
+lotCountries[56] = "Brazil";
+lotConfigurations[56] = "11x31.1x12";
+lotNames[57] = "Dia de Sorte - 12 números";
+lotCountries[57] = "Brazil";
+lotConfigurations[57] = "12x31.1x12";
+lotNames[58] = "Dia de Sorte - 13 números";
+lotCountries[58] = "Brazil";
+lotConfigurations[58] = "13x31.1x12";
+lotNames[59] = "Dia de Sorte - 14 números";
+lotCountries[59] = "Brazil";
+lotConfigurations[59] = "14x31.1x12";
+lotNames[60] = "Dia de Sorte - 15 números";
+lotCountries[60] = "Brazil";
+lotConfigurations[60] = "15x31.1x12";
+lotNames[61] = "Dupla Sena";
+lotCountries[61] = "Brazil";
+lotConfigurations[61] = "6x50.0x0";
+lotNames[62] = "Lotofácil - 15 números";
+lotCountries[62] = "Brazil";
+lotConfigurations[62] = "15x25.0x0";
+lotNames[63] = "Lotofácil - 16 números";
+lotCountries[63] = "Brazil";
+lotConfigurations[63] = "16x25.0x0";
+lotNames[64] = "Lotofácil - 17 números";
+lotCountries[64] = "Brazil";
+lotConfigurations[64] = "17x25.0x0";
+lotNames[65] = "Lotofácil - 18 números";
+lotCountries[65] = "Brazil";
+lotConfigurations[65] = "18x25.0x0";
+lotNames[66] = "Lotomania";
+lotCountries[66] = "Brazil";
+lotConfigurations[66] = "50x100.0x0";
+lotNames[67] = "Mega-Sena -  6 números";
+lotCountries[67] = "Brazil";
+lotConfigurations[67] = "6x60.0x0";
+lotNames[68] = "Mega-Sena -  7 números";
+lotCountries[68] = "Brazil";
+lotConfigurations[68] = "7x60.0x0";
+lotNames[69] = "Mega-Sena -  8 números";
+lotCountries[69] = "Brazil";
+lotConfigurations[69] = "8x60.0x0";
+lotNames[70] = "Mega-Sena -  9 números";
+lotCountries[70] = "Brazil";
+lotConfigurations[70] = "9x60.0x0";
+lotNames[71] = "Mega-Sena - 10 números";
+lotCountries[71] = "Brazil";
+lotConfigurations[71] = "10x60.0x0";
+lotNames[72] = "Mega-Sena - 11 números";
+lotCountries[72] = "Brazil";
+lotConfigurations[72] = "11x60.0x0";
+lotNames[73] = "Mega-Sena - 12 números";
+lotCountries[73] = "Brazil";
+lotConfigurations[73] = "12x60.0x0";
+lotNames[74] = "Mega-Sena - 13 números";
+lotCountries[74] = "Brazil";
+lotConfigurations[74] = "13x60.0x0";
+lotNames[75] = "Mega-Sena - 14 números";
+lotCountries[75] = "Brazil";
+lotConfigurations[75] = "14x60.0x0";
+lotNames[76] = "Mega-Sena - 15 números";
+lotCountries[76] = "Brazil";
+lotConfigurations[76] = "15x60.0x0";
+lotNames[77] = "Mega-Sena - 16 números";
+lotCountries[77] = "Brazil";
+lotConfigurations[77] = "16x60.0x0";
+lotNames[78] = "Mega-Sena - 17 números";
+lotCountries[78] = "Brazil";
+lotConfigurations[78] = "17x60.0x0";
+lotNames[79] = "Mega-Sena - 18 números";
+lotCountries[79] = "Brazil";
+lotConfigurations[79] = "18x60.0x0";
+lotNames[80] = "Mega-Sena - 19 números";
+lotCountries[80] = "Brazil";
+lotConfigurations[80] = "19x60.0x0";
+lotNames[81] = "Mega-Sena - 20 números";
+lotCountries[81] = "Brazil";
+lotConfigurations[81] = "20x60.0x0";
+lotNames[82] = "Quina";
+lotCountries[82] = "Brazil";
+lotConfigurations[82] = "5x80.0x0";
+lotNames[83] = "Timemania";
+lotCountries[83] = "Brazil";
+lotConfigurations[83] = "10x80.0x0";
+lotNames[84] = "Toto 2 - 5/35";
+lotCountries[84] = "Bulgaria";
+lotConfigurations[84] = "5x35.0x0";
+lotNames[85] = "Toto 2 - 6/42";
+lotCountries[85] = "Bulgaria";
+lotConfigurations[85] = "6x42.0x0";
+lotNames[86] = "Toto 2 - 6/49";
+lotCountries[86] = "Bulgaria";
+lotConfigurations[86] = "6x49.0x0";
+lotNames[87] = "Zodiac";
+lotCountries[87] = "Bulgaria";
+lotConfigurations[87] = "5x50.1x12";
+lotNames[88] = "Super 4";
+lotCountries[88] = "Cameroon";
+lotConfigurations[88] = "4x59.0x0";
+lotNames[89] = "Atlantic 6/49";
+lotCountries[89] = "Canada";
+lotConfigurations[89] = "6x49.0x0";
+lotNames[90] = "BC/49";
+lotCountries[90] = "Canada";
+lotConfigurations[90] = "6x49.0x0";
+lotNames[91] = "Daily Grand";
+lotCountries[91] = "Canada";
+lotConfigurations[91] = "5x49.1x7";
+lotNames[92] = "Daily Keno -  2 Numbers";
+lotCountries[92] = "Canada";
+lotConfigurations[92] = "2x70.0x0";
+lotNames[93] = "Daily Keno -  3 Numbers";
+lotCountries[93] = "Canada";
+lotConfigurations[93] = "3x70.0x0";
+lotNames[94] = "Daily Keno -  4 Numbers";
+lotCountries[94] = "Canada";
+lotConfigurations[94] = "4x70.0x0";
+lotNames[95] = "Daily Keno -  5 Numbers";
+lotCountries[95] = "Canada";
+lotConfigurations[95] = "5x70.0x0";
+lotNames[96] = "Daily Keno -  6 Numbers";
+lotCountries[96] = "Canada";
+lotConfigurations[96] = "6x70.0x0";
+lotNames[97] = "Daily Keno -  7 Numbers";
+lotCountries[97] = "Canada";
+lotConfigurations[97] = "7x70.0x0";
+lotNames[98] = "Daily Keno -  8 Numbers";
+lotCountries[98] = "Canada";
+lotConfigurations[98] = "8x70.0x0";
+lotNames[99] = "Daily Keno -  9 Numbers";
+lotCountries[99] = "Canada";
+lotConfigurations[99] = "9x70.0x0";
+lotNames[100] = "Daily Keno - 10 Numbers";
+lotCountries[100] = "Canada";
+lotConfigurations[100] = "10x70.0x0";
+lotNames[101] = "Hit or Miss";
+lotCountries[101] = "Canada";
+lotConfigurations[101] = "12x24.0x0";
+lotNames[102] = "Lotto 6/49";
+lotCountries[102] = "Canada";
+lotConfigurations[102] = "6x49.0x0";
+lotNames[103] = "Lotto Max";
+lotCountries[103] = "Canada";
+lotConfigurations[103] = "7x50.0x0";
+lotNames[104] = "Ontario 49";
+lotCountries[104] = "Canada";
+lotConfigurations[104] = "6x49.0x0";
+lotNames[105] = "Ontario Lottario";
+lotCountries[105] = "Canada";
+lotConfigurations[105] = "6x45.0x0";
+lotNames[106] = "Québec 49 Lottery";
+lotCountries[106] = "Canada";
+lotConfigurations[106] = "6x49.0x0";
+lotNames[107] = "Saskatchewan Western 649";
+lotCountries[107] = "Canada";
+lotConfigurations[107] = "6x49.0x0";
+lotNames[108] = "Saskatchewan Western Max";
+lotCountries[108] = "Canada";
+lotConfigurations[108] = "7x50.0x0";
+lotNames[109] = "Kino";
+lotCountries[109] = "Chile";
+lotConfigurations[109] = "14x25.0x0";
+lotNames[110] = "Loto";
+lotCountries[110] = "Chile";
+lotConfigurations[110] = "6x41.0x0";
+lotNames[111] = "Sports Lottery (22选5)";
+lotCountries[111] = "China";
+lotConfigurations[111] = "5x22.0x0";
+lotNames[112] = "Sports Lottery (31选7)";
+lotCountries[112] = "China";
+lotConfigurations[112] = "7x31.0x0";
+lotNames[113] = "Sports Lottery (超级大乐透)";
+lotCountries[113] = "China";
+lotConfigurations[113] = "5x35.2x12";
+lotNames[114] = "Welfare Lottery (七乐彩)";
+lotCountries[114] = "China";
+lotConfigurations[114] = "7x30.0x0";
+lotNames[115] = "Welfare Lottery (双色球)";
+lotCountries[115] = "China";
+lotConfigurations[115] = "6x33.1x16";
+lotNames[116] = "Baloto";
+lotCountries[116] = "Colombia";
+lotConfigurations[116] = "5x43.1x16";
+lotNames[117] = "Eurojackpot";
+lotCountries[117] = "Croatia";
+lotConfigurations[117] = "5x50.2x12";
+lotNames[118] = "Loto 6";
+lotCountries[118] = "Croatia";
+lotConfigurations[118] = "6x45.0x0";
+lotNames[119] = "Loto 7";
+lotCountries[119] = "Croatia";
+lotConfigurations[119] = "7x35.0x0";
+lotNames[120] = "Chance Korunka Sestka";
+lotCountries[120] = "Czech Republic";
+lotConfigurations[120] = "6x49.0x0";
+lotNames[121] = "Chance Korunka na 3";
+lotCountries[121] = "Czech Republic";
+lotConfigurations[121] = "3x49.0x0";
+lotNames[122] = "Chance Korunka na 4";
+lotCountries[122] = "Czech Republic";
+lotConfigurations[122] = "4x49.0x0";
+lotNames[123] = "Chance Korunka na 5";
+lotCountries[123] = "Czech Republic";
+lotConfigurations[123] = "5x49.0x0";
+lotNames[124] = "Eurojackpot";
+lotCountries[124] = "Czech Republic";
+lotConfigurations[124] = "5x50.2x12";
+lotNames[125] = "Fortuna Fofr";
+lotCountries[125] = "Czech Republic";
+lotConfigurations[125] = "8x25.1x4";
+lotNames[126] = "Fortuna Loto";
+lotCountries[126] = "Czech Republic";
+lotConfigurations[126] = "6x49.1x2";
+lotNames[127] = "Fortuna Trojka";
+lotCountries[127] = "Czech Republic";
+lotConfigurations[127] = "3x21.0x0";
+lotNames[128] = "Sazka Euromiliony";
+lotCountries[128] = "Czech Republic";
+lotConfigurations[128] = "7x35.1x5";
+lotNames[129] = "Sazka Sportka";
+lotCountries[129] = "Czech Republic";
+lotConfigurations[129] = "6x49.0x0";
+lotNames[130] = "Eurojackpot";
+lotCountries[130] = "Denmark";
+lotConfigurations[130] = "5x50.2x12";
+lotNames[131] = "Lotto";
+lotCountries[131] = "Denmark";
+lotConfigurations[131] = "7x36.0x0";
+lotNames[132] = "Vikinglotto";
+lotCountries[132] = "Denmark";
+lotConfigurations[132] = "6x48.1x5";
+lotNames[133] = "Play 4";
+lotCountries[133] = "Dominica";
+lotConfigurations[133] = "4x22.0x0";
+lotNames[134] = "Loteka - MegaLotto";
+lotCountries[134] = "Dominican Republic";
+lotConfigurations[134] = "6x49.0x0";
+lotNames[135] = "Loto";
+lotCountries[135] = "Dominican Republic";
+lotConfigurations[135] = "6x38.0x0";
+lotNames[136] = "Loto Más";
+lotCountries[136] = "Dominican Republic";
+lotConfigurations[136] = "6x38.1x10";
+lotNames[137] = "Loto Pool";
+lotCountries[137] = "Dominican Republic";
+lotConfigurations[137] = "5x31.0x0";
+lotNames[138] = "Super Loto LEIDSA";
+lotCountries[138] = "Dominican Republic";
+lotConfigurations[138] = "6x53.0x0";
+lotNames[139] = "Eurojackpot";
+lotCountries[139] = "Estonia";
+lotConfigurations[139] = "5x50.2x12";
+lotNames[140] = "Vikinglotto";
+lotCountries[140] = "Estonia";
+lotConfigurations[140] = "6x48.1x5";
+lotNames[141] = "Eurojackpot";
+lotCountries[141] = "Finland";
+lotConfigurations[141] = "5x50.2x12";
+lotNames[142] = "Lotto";
+lotCountries[142] = "Finland";
+lotConfigurations[142] = "7x40.0x0";
+lotNames[143] = "Vikinglotto";
+lotCountries[143] = "Finland";
+lotConfigurations[143] = "6x48.1x5";
+lotNames[144] = "Amigo";
+lotCountries[144] = "France";
+lotConfigurations[144] = "7x28.0x0";
+lotNames[145] = "EuroMillions";
+lotCountries[145] = "France";
+lotConfigurations[145] = "5x50.2x12";
+lotNames[146] = "EuroMillions HotPicks - Pick 1";
+lotCountries[146] = "France";
+lotConfigurations[146] = "1x50.0x0";
+lotNames[147] = "EuroMillions HotPicks - Pick 2";
+lotCountries[147] = "France";
+lotConfigurations[147] = "2x50.0x0";
+lotNames[148] = "EuroMillions HotPicks - Pick 3";
+lotCountries[148] = "France";
+lotConfigurations[148] = "3x50.0x0";
+lotNames[149] = "EuroMillions HotPicks - Pick 4";
+lotCountries[149] = "France";
+lotConfigurations[149] = "4x50.0x0";
+lotNames[150] = "EuroMillions HotPicks - Pick 5";
+lotCountries[150] = "France";
+lotConfigurations[150] = "5x50.0x0";
+lotNames[151] = "Loto";
+lotCountries[151] = "France";
+lotConfigurations[151] = "5x49.1x10";
+lotNames[152] = "Eurojackpot";
+lotCountries[152] = "Germany";
+lotConfigurations[152] = "5x50.2x12";
+lotNames[153] = "Lotto 6/49";
+lotCountries[153] = "Germany";
+lotConfigurations[153] = "6x49.1x10";
+lotNames[154] = "Fortune Thursday";
+lotCountries[154] = "Ghana";
+lotConfigurations[154] = "5x90.0x0";
+lotNames[155] = "Friday Bonanza";
+lotCountries[155] = "Ghana";
+lotConfigurations[155] = "5x90.0x0";
+lotNames[156] = "Ghana Lotto 5/90";
+lotCountries[156] = "Ghana";
+lotConfigurations[156] = "5x90.0x0";
+lotNames[157] = "Lucky Tuesday";
+lotCountries[157] = "Ghana";
+lotConfigurations[157] = "5x90.0x0";
+lotNames[158] = "Midweek Lotto";
+lotCountries[158] = "Ghana";
+lotConfigurations[158] = "5x90.0x0";
+lotNames[159] = "Monday Special";
+lotCountries[159] = "Ghana";
+lotConfigurations[159] = "5x90.0x0";
+lotNames[160] = "National Weekly Lotto";
+lotCountries[160] = "Ghana";
+lotConfigurations[160] = "5x90.0x0";
+lotNames[161] = "Extra 5";
+lotCountries[161] = "Greece";
+lotConfigurations[161] = "5x35.0x0";
+lotNames[162] = "Joker";
+lotCountries[162] = "Greece";
+lotConfigurations[162] = "5x45.1x20";
+lotNames[163] = "Lotto";
+lotCountries[163] = "Greece";
+lotConfigurations[163] = "6x49.0x0";
+lotNames[164] = "Lotto";
+lotCountries[164] = "Grenada, Carriacou and Petite Martinique";
+lotConfigurations[164] = "5x34.0x0";
+lotNames[165] = "Play Way";
+lotCountries[165] = "Grenada, Carriacou and Petite Martinique";
+lotConfigurations[165] = "1x36.0x0";
+lotNames[166] = "Super 6";
+lotCountries[166] = "Grenada, Carriacou and Petite Martinique";
+lotConfigurations[166] = "6x28.0x0";
+lotNames[167] = "Bana Belebele";
+lotCountries[167] = "Guinea";
+lotConfigurations[167] = "5x90.0x0";
+lotNames[168] = "Kif Kif";
+lotCountries[168] = "Guinea";
+lotConfigurations[168] = "5x90.0x0";
+lotNames[169] = "Terre à Terre";
+lotCountries[169] = "Guinea";
+lotConfigurations[169] = "5x90.0x0";
+lotNames[170] = "Ticotac";
+lotCountries[170] = "Guinea";
+lotConfigurations[170] = "5x90.0x0";
+lotNames[171] = "Wassa Wassa";
+lotCountries[171] = "Guinea";
+lotConfigurations[171] = "5x90.0x0";
+lotNames[172] = "Welli Welli";
+lotCountries[172] = "Guinea";
+lotConfigurations[172] = "5x90.0x0";
+lotNames[173] = "Hong Kong Jockey Club's Mark Six Lottery";
+lotCountries[173] = "Hong Kong";
+lotConfigurations[173] = "6x49.0x0";
+lotNames[174] = "Hong Kong Toto 6/49";
+lotCountries[174] = "Hong Kong";
+lotConfigurations[174] = "6x49.0x0";
+lotNames[175] = "Hatoslottó";
+lotCountries[175] = "Hungary";
+lotConfigurations[175] = "6x45.0x0";
+lotNames[176] = "Skandináv Lottó";
+lotCountries[176] = "Hungary";
+lotConfigurations[176] = "7x35.0x0";
+lotNames[177] = "Ötöslottó";
+lotCountries[177] = "Hungary";
+lotConfigurations[177] = "5x90.0x0";
+lotNames[178] = "Eurojackpot";
+lotCountries[178] = "Iceland";
+lotConfigurations[178] = "5x50.2x12";
+lotNames[179] = "Vikinglotto";
+lotCountries[179] = "Iceland";
+lotConfigurations[179] = "6x48.1x5";
+lotNames[180] = "Lotto India";
+lotCountries[180] = "India";
+lotConfigurations[180] = "6x50.1x5";
+lotNames[181] = "Playwin Easy Lotto";
+lotCountries[181] = "India";
+lotConfigurations[181] = "6x45.0x0";
+lotNames[182] = "Playwin Fast Digit Lottery";
+lotCountries[182] = "India";
+lotConfigurations[182] = "5x31.0x0";
+lotNames[183] = "Playwin Super Lotto";
+lotCountries[183] = "India";
+lotConfigurations[183] = "6x49.0x0";
+lotNames[184] = "Playwin Thunderball";
+lotCountries[184] = "India";
+lotConfigurations[184] = "5x42.1x15";
+lotNames[185] = "Daily Million";
+lotCountries[185] = "Ireland";
+lotConfigurations[185] = "6x39.0x0";
+lotNames[186] = "EuroMillions";
+lotCountries[186] = "Ireland";
+lotConfigurations[186] = "5x50.2x12";
+lotNames[187] = "EuroMillions HotPicks - Pick 1";
+lotCountries[187] = "Ireland";
+lotConfigurations[187] = "1x50.0x0";
+lotNames[188] = "EuroMillions HotPicks - Pick 2";
+lotCountries[188] = "Ireland";
+lotConfigurations[188] = "2x50.0x0";
+lotNames[189] = "EuroMillions HotPicks - Pick 3";
+lotCountries[189] = "Ireland";
+lotConfigurations[189] = "3x50.0x0";
+lotNames[190] = "EuroMillions HotPicks - Pick 4";
+lotCountries[190] = "Ireland";
+lotConfigurations[190] = "4x50.0x0";
+lotNames[191] = "EuroMillions HotPicks - Pick 5";
+lotCountries[191] = "Ireland";
+lotConfigurations[191] = "5x50.0x0";
+lotNames[192] = "Lotto";
+lotCountries[192] = "Ireland";
+lotConfigurations[192] = "6x47.0x0";
+lotNames[193] = "777";
+lotCountries[193] = "Israel";
+lotConfigurations[193] = "7x70.0x0";
+lotNames[194] = "New Lotto";
+lotCountries[194] = "Israel";
+lotConfigurations[194] = "6x37.1x7";
+lotNames[195] = "10eLotto";
+lotCountries[195] = "Italy";
+lotConfigurations[195] = "10x90.0x0";
+lotNames[196] = "Eurojackpot";
+lotCountries[196] = "Italy";
+lotConfigurations[196] = "5x50.2x12";
+lotNames[197] = "MillionDay";
+lotCountries[197] = "Italy";
+lotConfigurations[197] = "5x55.0x0";
+lotNames[198] = "SuperEna Max";
+lotCountries[198] = "Italy";
+lotConfigurations[198] = "6x90.0x0";
+lotNames[199] = "SuperEnaLotto";
+lotCountries[199] = "Italy";
+lotConfigurations[199] = "6x90.0x0";
+lotNames[200] = "SuperEnalotto + SuperStar";
+lotCountries[200] = "Italy";
+lotConfigurations[200] = "6x90.1x90";
+lotNames[201] = "Win For Life";
+lotCountries[201] = "Italy";
+lotConfigurations[201] = "10x20.0x0";
+lotNames[202] = "Loto Bonheur - Choisir 1";
+lotCountries[202] = "Ivory Coast";
+lotConfigurations[202] = "1x90.0x0";
+lotNames[203] = "Loto Bonheur - Choisir 2";
+lotCountries[203] = "Ivory Coast";
+lotConfigurations[203] = "2x90.0x0";
+lotNames[204] = "Loto Bonheur - Choisir 3";
+lotCountries[204] = "Ivory Coast";
+lotConfigurations[204] = "3x90.0x0";
+lotNames[205] = "Loto Bonheur - Choisir 4";
+lotCountries[205] = "Ivory Coast";
+lotConfigurations[205] = "4x90.0x0";
+lotNames[206] = "Loto Bonheur - Choisir 5";
+lotCountries[206] = "Ivory Coast";
+lotConfigurations[206] = "5x90.0x0";
+lotNames[207] = "Cash Pot";
+lotCountries[207] = "Jamaica";
+lotConfigurations[207] = "1x36.0x0";
+lotNames[208] = "Dollaz - Pick  3";
+lotCountries[208] = "Jamaica";
+lotConfigurations[208] = "3x36.0x0";
+lotNames[209] = "Dollaz - Pick  4";
+lotCountries[209] = "Jamaica";
+lotConfigurations[209] = "4x36.0x0";
+lotNames[210] = "Dollaz - Pick  5";
+lotCountries[210] = "Jamaica";
+lotConfigurations[210] = "5x36.0x0";
+lotNames[211] = "Dollaz - Pick  6";
+lotCountries[211] = "Jamaica";
+lotConfigurations[211] = "6x36.0x0";
+lotNames[212] = "Dollaz - Pick  7";
+lotCountries[212] = "Jamaica";
+lotConfigurations[212] = "7x36.0x0";
+lotNames[213] = "Dollaz - Pick  8";
+lotCountries[213] = "Jamaica";
+lotConfigurations[213] = "8x36.0x0";
+lotNames[214] = "Dollaz - Pick  9";
+lotCountries[214] = "Jamaica";
+lotConfigurations[214] = "9x36.0x0";
+lotNames[215] = "Dollaz - Pick 10";
+lotCountries[215] = "Jamaica";
+lotConfigurations[215] = "10x36.0x0";
+lotNames[216] = "Lotto";
+lotCountries[216] = "Jamaica";
+lotConfigurations[216] = "6x38.0x0";
+lotNames[217] = "Lucky 5";
+lotCountries[217] = "Jamaica";
+lotConfigurations[217] = "5x26.0x0";
+lotNames[218] = "Super Lotto";
+lotCountries[218] = "Jamaica";
+lotConfigurations[218] = "5x35.1x10";
+lotNames[219] = "Loto 6 (ロト6)";
+lotCountries[219] = "Japan";
+lotConfigurations[219] = "6x43.0x0";
+lotNames[220] = "Loto 7 (ロト7)";
+lotCountries[220] = "Japan";
+lotConfigurations[220] = "7x37.0x0";
+lotNames[221] = "Mini Loto (ミニロト)";
+lotCountries[221] = "Japan";
+lotConfigurations[221] = "5x31.0x0";
+lotNames[222] = "Lotto";
+lotCountries[222] = "Kenya";
+lotConfigurations[222] = "6x49.1x10";
+lotNames[223] = "Pambazuka National Lottery";
+lotCountries[223] = "Kenya";
+lotConfigurations[223] = "6x49.1x10";
+lotNames[224] = "Eurojackpot";
+lotCountries[224] = "Latvia";
+lotConfigurations[224] = "5x50.2x12";
+lotNames[225] = "LatLoto";
+lotCountries[225] = "Latvia";
+lotConfigurations[225] = "5x35.0x0";
+lotNames[226] = "Vikinglotto";
+lotCountries[226] = "Latvia";
+lotConfigurations[226] = "6x48.1x5";
+lotNames[227] = "Loto";
+lotCountries[227] = "Lebanon";
+lotConfigurations[227] = "6x42.0x0";
+lotNames[228] = "Eurojackpot";
+lotCountries[228] = "Lithuania";
+lotConfigurations[228] = "5x50.2x12";
+lotNames[229] = "Vikinglotto";
+lotCountries[229] = "Lithuania";
+lotConfigurations[229] = "6x48.1x5";
+lotNames[230] = "EuroMillions";
+lotCountries[230] = "Luxembourg";
+lotConfigurations[230] = "5x50.2x12";
+lotNames[231] = "EuroMillions HotPicks - Pick 1";
+lotCountries[231] = "Luxembourg";
+lotConfigurations[231] = "1x50.0x0";
+lotNames[232] = "EuroMillions HotPicks - Pick 2";
+lotCountries[232] = "Luxembourg";
+lotConfigurations[232] = "2x50.0x0";
+lotNames[233] = "EuroMillions HotPicks - Pick 3";
+lotCountries[233] = "Luxembourg";
+lotConfigurations[233] = "3x50.0x0";
+lotNames[234] = "EuroMillions HotPicks - Pick 4";
+lotCountries[234] = "Luxembourg";
+lotConfigurations[234] = "4x50.0x0";
+lotNames[235] = "EuroMillions HotPicks - Pick 5";
+lotCountries[235] = "Luxembourg";
+lotConfigurations[235] = "5x50.0x0";
+lotNames[236] = "Лото 7";
+lotCountries[236] = "Macedonia";
+lotConfigurations[236] = "7x37.0x0";
+lotNames[237] = "Magnum Life";
+lotCountries[237] = "Malaysia";
+lotConfigurations[237] = "8x36.0x0";
+lotNames[238] = "Sportstoto Power 6/55";
+lotCountries[238] = "Malaysia";
+lotConfigurations[238] = "6x55.0x0";
+lotNames[239] = "Sportstoto Supreme 6/58";
+lotCountries[239] = "Malaysia";
+lotConfigurations[239] = "6x58.0x0";
+lotNames[240] = "Star Toto 6/50";
+lotCountries[240] = "Malaysia";
+lotConfigurations[240] = "6x50.0x0";
+lotNames[241] = "Super 5 Lottery";
+lotCountries[241] = "Malta";
+lotConfigurations[241] = "5x45.0x0";
+lotNames[242] = "Loto";
+lotCountries[242] = "Mauritius";
+lotConfigurations[242] = "6x40.0x0";
+lotNames[243] = "Lotto Vert";
+lotCountries[243] = "Mauritius";
+lotConfigurations[243] = "7x28.0x0";
+lotNames[244] = "Melate";
+lotCountries[244] = "Mexico";
+lotConfigurations[244] = "6x56.0x0";
+lotNames[245] = "Melate Chispazo";
+lotCountries[245] = "Mexico";
+lotConfigurations[245] = "5x28.0x0";
+lotNames[246] = "Melate Retro";
+lotCountries[246] = "Mexico";
+lotConfigurations[246] = "6x39.0x0";
+lotNames[247] = "Loto";
+lotCountries[247] = "Morocco";
+lotConfigurations[247] = "6x49.0x0";
+lotNames[248] = "Milliardo";
+lotCountries[248] = "Morocco";
+lotConfigurations[248] = "5x50.1x10";
+lotNames[249] = "Eurojackpot";
+lotCountries[249] = "Netherlands";
+lotConfigurations[249] = "5x50.2x12";
+lotNames[250] = "Lotto";
+lotCountries[250] = "Netherlands";
+lotConfigurations[250] = "6x45.0x0";
+lotNames[251] = "Lucky Day -  1 Number";
+lotCountries[251] = "Netherlands";
+lotConfigurations[251] = "1x80.0x0";
+lotNames[252] = "Lucky Day -  2 Numbers";
+lotCountries[252] = "Netherlands";
+lotConfigurations[252] = "2x80.0x0";
+lotNames[253] = "Lucky Day -  3 Numbers";
+lotCountries[253] = "Netherlands";
+lotConfigurations[253] = "3x80.0x0";
+lotNames[254] = "Lucky Day -  4 Numbers";
+lotCountries[254] = "Netherlands";
+lotConfigurations[254] = "4x80.0x0";
+lotNames[255] = "Lucky Day -  5 Numbers";
+lotCountries[255] = "Netherlands";
+lotConfigurations[255] = "5x80.0x0";
+lotNames[256] = "Lucky Day -  6 Numbers";
+lotCountries[256] = "Netherlands";
+lotConfigurations[256] = "6x80.0x0";
+lotNames[257] = "Lucky Day -  7 Numbers";
+lotCountries[257] = "Netherlands";
+lotConfigurations[257] = "7x80.0x0";
+lotNames[258] = "Lucky Day -  8 Numbers";
+lotCountries[258] = "Netherlands";
+lotConfigurations[258] = "8x80.0x0";
+lotNames[259] = "Lucky Day -  9 Numbers";
+lotCountries[259] = "Netherlands";
+lotConfigurations[259] = "9x80.0x0";
+lotNames[260] = "Lucky Day - 10 Numbers";
+lotCountries[260] = "Netherlands";
+lotConfigurations[260] = "10x80.0x0";
+lotNames[261] = "Lotto";
+lotCountries[261] = "New Zealand";
+lotConfigurations[261] = "6x40.0x0";
+lotNames[262] = "Powerball";
+lotCountries[262] = "New Zealand";
+lotConfigurations[262] = "6x40.1x10";
+lotNames[263] = "La Grande Loto";
+lotCountries[263] = "Nicaragua";
+lotConfigurations[263] = "5x25.1x10";
+lotNames[264] = "Baba Ijebu - Premier 06";
+lotCountries[264] = "Nigeria";
+lotConfigurations[264] = "5x90.0x0";
+lotNames[265] = "Baba Ijebu - Premier Bingo";
+lotCountries[265] = "Nigeria";
+lotConfigurations[265] = "5x90.0x0";
+lotNames[266] = "Baba Ijebu - Premier Club Master";
+lotCountries[266] = "Nigeria";
+lotConfigurations[266] = "5x90.0x0";
+lotNames[267] = "Baba Ijebu - Premier Diamond";
+lotCountries[267] = "Nigeria";
+lotConfigurations[267] = "5x90.0x0";
+lotNames[268] = "Baba Ijebu - Premier Enugu";
+lotCountries[268] = "Nigeria";
+lotConfigurations[268] = "5x90.0x0";
+lotNames[269] = "Baba Ijebu - Premier Fairchance";
+lotCountries[269] = "Nigeria";
+lotConfigurations[269] = "5x90.0x0";
+lotNames[270] = "Baba Ijebu - Premier Gold";
+lotCountries[270] = "Nigeria";
+lotConfigurations[270] = "5x90.0x0";
+lotNames[271] = "Baba Ijebu - Premier International";
+lotCountries[271] = "Nigeria";
+lotConfigurations[271] = "5x90.0x0";
+lotNames[272] = "Baba Ijebu - Premier Jackpot";
+lotCountries[272] = "Nigeria";
+lotConfigurations[272] = "5x90.0x0";
+lotNames[273] = "Baba Ijebu - Premier King";
+lotCountries[273] = "Nigeria";
+lotConfigurations[273] = "5x90.0x0";
+lotNames[274] = "Baba Ijebu - Premier Lucky";
+lotCountries[274] = "Nigeria";
+lotConfigurations[274] = "5x90.0x0";
+lotNames[275] = "Baba Ijebu - Premier Mark II";
+lotCountries[275] = "Nigeria";
+lotConfigurations[275] = "5x90.0x0";
+lotNames[276] = "Baba Ijebu - Premier Metro";
+lotCountries[276] = "Nigeria";
+lotConfigurations[276] = "5x90.0x0";
+lotNames[277] = "Baba Ijebu - Premier Midweek";
+lotCountries[277] = "Nigeria";
+lotConfigurations[277] = "5x90.0x0";
+lotNames[278] = "Baba Ijebu - Premier National";
+lotCountries[278] = "Nigeria";
+lotConfigurations[278] = "5x90.0x0";
+lotNames[279] = "Baba Ijebu - Premier Peoples";
+lotCountries[279] = "Nigeria";
+lotConfigurations[279] = "5x90.0x0";
+lotNames[280] = "Baba Ijebu - Premier Royal";
+lotCountries[280] = "Nigeria";
+lotConfigurations[280] = "5x90.0x0";
+lotNames[281] = "Baba Ijebu - Premier Super";
+lotCountries[281] = "Nigeria";
+lotConfigurations[281] = "5x90.0x0";
+lotNames[282] = "Baba Ijebu - Premier Tota";
+lotCountries[282] = "Nigeria";
+lotConfigurations[282] = "5x90.0x0";
+lotNames[283] = "Baba Ijebu - Premier VAG";
+lotCountries[283] = "Nigeria";
+lotConfigurations[283] = "5x90.0x0";
+lotNames[284] = "Champion";
+lotCountries[284] = "Nigeria";
+lotConfigurations[284] = "5x90.0x0";
+lotNames[285] = "Fortune";
+lotCountries[285] = "Nigeria";
+lotConfigurations[285] = "5x90.0x0";
+lotNames[286] = "Give'N'Take - Lottery 5/90";
+lotCountries[286] = "Nigeria";
+lotConfigurations[286] = "5x90.0x0";
+lotNames[287] = "MegaHammer";
+lotCountries[287] = "Nigeria";
+lotConfigurations[287] = "5x59.1x39";
+lotNames[288] = "PlentyMillions";
+lotCountries[288] = "Nigeria";
+lotConfigurations[288] = "6x40.0x0";
+lotNames[289] = "Quick5";
+lotCountries[289] = "Nigeria";
+lotConfigurations[289] = "5x39.0x0";
+lotNames[290] = "Tango";
+lotCountries[290] = "Nigeria";
+lotConfigurations[290] = "5x90.0x0";
+lotNames[291] = "Wazobia";
+lotCountries[291] = "Nigeria";
+lotConfigurations[291] = "5x90.0x0";
+lotNames[292] = "Western Lotto - Eurojackpot";
+lotCountries[292] = "Nigeria";
+lotConfigurations[292] = "5x50.2x10";
+lotNames[293] = "Western Lotto - Euromillions";
+lotCountries[293] = "Nigeria";
+lotConfigurations[293] = "5x50.2x12";
+lotNames[294] = "Western Lotto - Kashman Daily  50";
+lotCountries[294] = "Nigeria";
+lotConfigurations[294] = "5x42.0x0";
+lotNames[295] = "Western Lotto - Kashman Daily 100";
+lotCountries[295] = "Nigeria";
+lotConfigurations[295] = "5x90.0x0";
+lotNames[296] = "Western Lotto - Kashman Mega 150";
+lotCountries[296] = "Nigeria";
+lotConfigurations[296] = "5x49.1x10";
+lotNames[297] = "Western Lotto - Mega Millions";
+lotCountries[297] = "Nigeria";
+lotConfigurations[297] = "5x70.1x25";
+lotNames[298] = "Western Lotto - Powerball";
+lotCountries[298] = "Nigeria";
+lotConfigurations[298] = "5x69.1x26";
+lotNames[299] = "Western Lotto - UK Lotto";
+lotCountries[299] = "Nigeria";
+lotConfigurations[299] = "6x59.0x0";
+lotNames[300] = "Eurojackpot";
+lotCountries[300] = "Norway";
+lotConfigurations[300] = "5x50.2x12";
+lotNames[301] = "Lotto";
+lotCountries[301] = "Norway";
+lotConfigurations[301] = "7x34.0x0";
+lotNames[302] = "Vikinglotto";
+lotCountries[302] = "Norway";
+lotConfigurations[302] = "6x48.1x5";
+lotNames[303] = "Super Lotto";
+lotCountries[303] = "Paraguay";
+lotConfigurations[303] = "5x35.1x10";
+lotNames[304] = "Gana Diario";
+lotCountries[304] = "Peru";
+lotConfigurations[304] = "5x35.0x0";
+lotNames[305] = "Kinelo - Pick  1";
+lotCountries[305] = "Peru";
+lotConfigurations[305] = "1x80.0x0";
+lotNames[306] = "Kinelo - Pick  2";
+lotCountries[306] = "Peru";
+lotConfigurations[306] = "2x80.0x0";
+lotNames[307] = "Kinelo - Pick  3";
+lotCountries[307] = "Peru";
+lotConfigurations[307] = "3x80.0x0";
+lotNames[308] = "Kinelo - Pick  4";
+lotCountries[308] = "Peru";
+lotConfigurations[308] = "4x80.0x0";
+lotNames[309] = "Kinelo - Pick  5";
+lotCountries[309] = "Peru";
+lotConfigurations[309] = "5x80.0x0";
+lotNames[310] = "Kinelo - Pick  6";
+lotCountries[310] = "Peru";
+lotConfigurations[310] = "6x80.0x0";
+lotNames[311] = "Kinelo - Pick  7";
+lotCountries[311] = "Peru";
+lotConfigurations[311] = "7x80.0x0";
+lotNames[312] = "Kinelo - Pick  8";
+lotCountries[312] = "Peru";
+lotConfigurations[312] = "8x80.0x0";
+lotNames[313] = "Kinelo - Pick  9";
+lotCountries[313] = "Peru";
+lotConfigurations[313] = "9x80.0x0";
+lotNames[314] = "Kinelo - Pick 10";
+lotCountries[314] = "Peru";
+lotConfigurations[314] = "10x80.0x0";
+lotNames[315] = "Kábala";
+lotCountries[315] = "Peru";
+lotConfigurations[315] = "6x40.0x0";
+lotNames[316] = "Tinka";
+lotCountries[316] = "Peru";
+lotConfigurations[316] = "6x45.0x0";
+lotNames[317] = "Grand Lotto 6/55";
+lotCountries[317] = "Philippines";
+lotConfigurations[317] = "6x55.0x0";
+lotNames[318] = "Lotto 6/42";
+lotCountries[318] = "Philippines";
+lotConfigurations[318] = "6x42.0x0";
+lotNames[319] = "Mega Lotto 6/45";
+lotCountries[319] = "Philippines";
+lotConfigurations[319] = "6x45.0x0";
+lotNames[320] = "Power Lotto";
+lotCountries[320] = "Philippines";
+lotConfigurations[320] = "5x55.1x10";
+lotNames[321] = "Super Lotto 6/49";
+lotCountries[321] = "Philippines";
+lotConfigurations[321] = "6x49.0x0";
+lotNames[322] = "Ultra Lotto 6/58";
+lotCountries[322] = "Philippines";
+lotConfigurations[322] = "6x58.0x0";
+lotNames[323] = "Ekstra Pensja";
+lotCountries[323] = "Poland";
+lotConfigurations[323] = "5x35.1x4";
+lotNames[324] = "Eurojackpot";
+lotCountries[324] = "Poland";
+lotConfigurations[324] = "5x50.2x12";
+lotNames[325] = "Joker";
+lotCountries[325] = "Poland";
+lotConfigurations[325] = "4x50.1x36";
+lotNames[326] = "Lotto";
+lotCountries[326] = "Poland";
+lotConfigurations[326] = "6x49.0x0";
+lotNames[327] = "Mini Lotto";
+lotCountries[327] = "Poland";
+lotConfigurations[327] = "5x42.0x0";
+lotNames[328] = "Multi Multi";
+lotCountries[328] = "Poland";
+lotConfigurations[328] = "10x80.0x0";
+lotNames[329] = "EuroMillions";
+lotCountries[329] = "Portugal";
+lotConfigurations[329] = "5x50.2x12";
+lotNames[330] = "EuroMillions HotPicks - Pick 1";
+lotCountries[330] = "Portugal";
+lotConfigurations[330] = "1x50.0x0";
+lotNames[331] = "EuroMillions HotPicks - Pick 2";
+lotCountries[331] = "Portugal";
+lotConfigurations[331] = "2x50.0x0";
+lotNames[332] = "EuroMillions HotPicks - Pick 3";
+lotCountries[332] = "Portugal";
+lotConfigurations[332] = "3x50.0x0";
+lotNames[333] = "EuroMillions HotPicks - Pick 4";
+lotCountries[333] = "Portugal";
+lotConfigurations[333] = "4x50.0x0";
+lotNames[334] = "EuroMillions HotPicks - Pick 5";
+lotCountries[334] = "Portugal";
+lotConfigurations[334] = "5x50.0x0";
+lotNames[335] = "Totoloto";
+lotCountries[335] = "Portugal";
+lotConfigurations[335] = "5x49.1x13";
+lotNames[336] = "Loto Cash";
+lotCountries[336] = "Puerto Rico";
+lotConfigurations[336] = "5x35.1x10";
+lotNames[337] = "Powerball";
+lotCountries[337] = "Puerto Rico";
+lotConfigurations[337] = "5x69.1x26";
+lotNames[338] = "Joker";
+lotCountries[338] = "Romania";
+lotConfigurations[338] = "5x45.1x20";
+lotNames[339] = "Keno - Pick  1";
+lotCountries[339] = "Romania";
+lotConfigurations[339] = "1x80.0x0";
+lotNames[340] = "Keno - Pick  2";
+lotCountries[340] = "Romania";
+lotConfigurations[340] = "2x80.0x0";
+lotNames[341] = "Keno - Pick  3";
+lotCountries[341] = "Romania";
+lotConfigurations[341] = "3x80.0x0";
+lotNames[342] = "Keno - Pick  4";
+lotCountries[342] = "Romania";
+lotConfigurations[342] = "4x80.0x0";
+lotNames[343] = "Keno - Pick  5";
+lotCountries[343] = "Romania";
+lotConfigurations[343] = "5x80.0x0";
+lotNames[344] = "Keno - Pick  6";
+lotCountries[344] = "Romania";
+lotConfigurations[344] = "6x80.0x0";
+lotNames[345] = "Keno - Pick  7";
+lotCountries[345] = "Romania";
+lotConfigurations[345] = "7x80.0x0";
+lotNames[346] = "Keno - Pick  8";
+lotCountries[346] = "Romania";
+lotConfigurations[346] = "8x80.0x0";
+lotNames[347] = "Keno - Pick  9";
+lotCountries[347] = "Romania";
+lotConfigurations[347] = "9x80.0x0";
+lotNames[348] = "Keno - Pick 10";
+lotCountries[348] = "Romania";
+lotConfigurations[348] = "10x80.0x0";
+lotNames[349] = "Keno - Pick 11";
+lotCountries[349] = "Romania";
+lotConfigurations[349] = "11x80.0x0";
+lotNames[350] = "Keno - Pick 12";
+lotCountries[350] = "Romania";
+lotConfigurations[350] = "12x80.0x0";
+lotNames[351] = "Loto 5/40";
+lotCountries[351] = "Romania";
+lotConfigurations[351] = "5x40.0x0";
+lotNames[352] = "Loto 6/49";
+lotCountries[352] = "Romania";
+lotConfigurations[352] = "6x49.0x0";
+lotNames[353] = "Gosloto (Гослото) 4/20";
+lotCountries[353] = "Russia";
+lotConfigurations[353] = "4x20.0x0";
+lotNames[354] = "Gosloto (Гослото) 5/36";
+lotCountries[354] = "Russia";
+lotConfigurations[354] = "5x36.0x0";
+lotNames[355] = "Gosloto (Гослото) 6/45";
+lotCountries[355] = "Russia";
+lotConfigurations[355] = "6x45.0x0";
+lotNames[356] = "Rapido (Рапидо)";
+lotCountries[356] = "Russia";
+lotConfigurations[356] = "8x20.1x4";
+lotNames[357] = "Stoloto 7x49";
+lotCountries[357] = "Russia";
+lotConfigurations[357] = "7x49.0x0";
+lotNames[358] = "Stoloto Спортлото";
+lotCountries[358] = "Russia";
+lotConfigurations[358] = "6x49.0x0";
+lotNames[359] = "Super Lotto";
+lotCountries[359] = "Saint Kitts and Nevis";
+lotConfigurations[359] = "5x35.1x10";
+lotNames[360] = "Lotto";
+lotCountries[360] = "Saint Vincent and the Grenadines";
+lotConfigurations[360] = "5x34.0x0";
+lotNames[361] = "Super 6";
+lotCountries[361] = "Saint Vincent and the Grenadines";
+lotConfigurations[361] = "6x28.0x0";
+lotNames[362] = "State Lottery (Državna Lutrija Srbije)";
+lotCountries[362] = "Serbia";
+lotConfigurations[362] = "7x39.0x0";
+lotNames[363] = "Toto";
+lotCountries[363] = "Singapore";
+lotConfigurations[363] = "6x49.0x0";
+lotNames[364] = "Super Lotto";
+lotCountries[364] = "Sint Maarten";
+lotConfigurations[364] = "5x35.1x10";
+lotNames[365] = "Eurojackpot";
+lotCountries[365] = "Slovakia";
+lotConfigurations[365] = "5x50.2x12";
+lotNames[366] = "Euromillions";
+lotCountries[366] = "Slovakia";
+lotConfigurations[366] = "7x33.1x6";
+lotNames[367] = "Keno - Pick  1";
+lotCountries[367] = "Slovakia";
+lotConfigurations[367] = "1x80.0x0";
+lotNames[368] = "Keno - Pick  2";
+lotCountries[368] = "Slovakia";
+lotConfigurations[368] = "2x80.0x0";
+lotNames[369] = "Keno - Pick  3";
+lotCountries[369] = "Slovakia";
+lotConfigurations[369] = "3x80.0x0";
+lotNames[370] = "Keno - Pick  4";
+lotCountries[370] = "Slovakia";
+lotConfigurations[370] = "4x80.0x0";
+lotNames[371] = "Keno - Pick  5";
+lotCountries[371] = "Slovakia";
+lotConfigurations[371] = "5x80.0x0";
+lotNames[372] = "Keno - Pick  6";
+lotCountries[372] = "Slovakia";
+lotConfigurations[372] = "6x80.0x0";
+lotNames[373] = "Keno - Pick  7";
+lotCountries[373] = "Slovakia";
+lotConfigurations[373] = "7x80.0x0";
+lotNames[374] = "Keno - Pick  8";
+lotCountries[374] = "Slovakia";
+lotConfigurations[374] = "8x80.0x0";
+lotNames[375] = "Keno - Pick  9";
+lotCountries[375] = "Slovakia";
+lotConfigurations[375] = "9x80.0x0";
+lotNames[376] = "Keno - Pick 10";
+lotCountries[376] = "Slovakia";
+lotConfigurations[376] = "10x80.0x0";
+lotNames[377] = "Keno - Pick 11";
+lotCountries[377] = "Slovakia";
+lotConfigurations[377] = "11x80.0x0";
+lotNames[378] = "Keno - Pick 12";
+lotCountries[378] = "Slovakia";
+lotConfigurations[378] = "12x80.0x0";
+lotNames[379] = "Loto";
+lotCountries[379] = "Slovakia";
+lotConfigurations[379] = "6x49.1x49";
+lotNames[380] = "Loto 5 z 35";
+lotCountries[380] = "Slovakia";
+lotConfigurations[380] = "5x35.0x0";
+lotNames[381] = "Eurojackpot";
+lotCountries[381] = "Slovenia";
+lotConfigurations[381] = "5x50.2x12";
+lotNames[382] = "Loto";
+lotCountries[382] = "Slovenia";
+lotConfigurations[382] = "7x39.0x0";
+lotNames[383] = "Vikinglotto";
+lotCountries[383] = "Slovenia";
+lotConfigurations[383] = "6x48.1x5";
+lotNames[384] = "Daily Lotto";
+lotCountries[384] = "South Africa";
+lotConfigurations[384] = "5x36.0x0";
+lotNames[385] = "Lotto";
+lotCountries[385] = "South Africa";
+lotConfigurations[385] = "6x52.0x0";
+lotNames[386] = "Lotto Plus 1";
+lotCountries[386] = "South Africa";
+lotConfigurations[386] = "6x52.0x0";
+lotNames[387] = "Lotto Plus 2";
+lotCountries[387] = "South Africa";
+lotConfigurations[387] = "6x52.0x0";
+lotNames[388] = "Powerball";
+lotCountries[388] = "South Africa";
+lotConfigurations[388] = "5x50.1x20";
+lotNames[389] = "Powerball Plus";
+lotCountries[389] = "South Africa";
+lotConfigurations[389] = "5x50.1x20";
+lotNames[390] = "DongHang Lottery (동행로또)";
+lotCountries[390] = "South Korea";
+lotConfigurations[390] = "6x45.0x0";
+lotNames[391] = "BonoLoto";
+lotCountries[391] = "Spain";
+lotConfigurations[391] = "6x49.0x0";
+lotNames[392] = "Daily 6/49";
+lotCountries[392] = "Spain";
+lotConfigurations[392] = "6x49.0x0";
+lotNames[393] = "El Gordo de la Primitiva";
+lotCountries[393] = "Spain";
+lotConfigurations[393] = "5x54.1x10";
+lotNames[394] = "EuroMillions";
+lotCountries[394] = "Spain";
+lotConfigurations[394] = "5x50.2x12";
+lotNames[395] = "EuroMillions HotPicks - Pick 1";
+lotCountries[395] = "Spain";
+lotConfigurations[395] = "1x50.0x0";
+lotNames[396] = "EuroMillions HotPicks - Pick 2";
+lotCountries[396] = "Spain";
+lotConfigurations[396] = "2x50.0x0";
+lotNames[397] = "EuroMillions HotPicks - Pick 3";
+lotCountries[397] = "Spain";
+lotConfigurations[397] = "3x50.0x0";
+lotNames[398] = "EuroMillions HotPicks - Pick 4";
+lotCountries[398] = "Spain";
+lotConfigurations[398] = "4x50.0x0";
+lotNames[399] = "EuroMillions HotPicks - Pick 5";
+lotCountries[399] = "Spain";
+lotConfigurations[399] = "5x50.0x0";
+lotNames[400] = "Eurojackpot";
+lotCountries[400] = "Spain";
+lotConfigurations[400] = "5x50.2x12";
+lotNames[401] = "La Primitiva";
+lotCountries[401] = "Spain";
+lotConfigurations[401] = "6x49.0x0";
+lotNames[402] = "Eurojackpot";
+lotCountries[402] = "Sweden";
+lotConfigurations[402] = "5x50.2x12";
+lotNames[403] = "Keno - Pick  1";
+lotCountries[403] = "Sweden";
+lotConfigurations[403] = "1x70.0x0";
+lotNames[404] = "Keno - Pick  2";
+lotCountries[404] = "Sweden";
+lotConfigurations[404] = "2x70.0x0";
+lotNames[405] = "Keno - Pick  3";
+lotCountries[405] = "Sweden";
+lotConfigurations[405] = "3x70.0x0";
+lotNames[406] = "Keno - Pick  4";
+lotCountries[406] = "Sweden";
+lotConfigurations[406] = "4x70.0x0";
+lotNames[407] = "Keno - Pick  5";
+lotCountries[407] = "Sweden";
+lotConfigurations[407] = "5x70.0x0";
+lotNames[408] = "Keno - Pick  6";
+lotCountries[408] = "Sweden";
+lotConfigurations[408] = "6x70.0x0";
+lotNames[409] = "Keno - Pick  7";
+lotCountries[409] = "Sweden";
+lotConfigurations[409] = "7x70.0x0";
+lotNames[410] = "Keno - Pick  8";
+lotCountries[410] = "Sweden";
+lotConfigurations[410] = "8x70.0x0";
+lotNames[411] = "Keno - Pick  9";
+lotCountries[411] = "Sweden";
+lotConfigurations[411] = "9x70.0x0";
+lotNames[412] = "Keno - Pick 10";
+lotCountries[412] = "Sweden";
+lotConfigurations[412] = "10x70.0x0";
+lotNames[413] = "Keno - Pick 11";
+lotCountries[413] = "Sweden";
+lotConfigurations[413] = "11x70.0x0";
+lotNames[414] = "SwedenLotto";
+lotCountries[414] = "Sweden";
+lotConfigurations[414] = "7x35.0x0";
+lotNames[415] = "Vikinglotto";
+lotCountries[415] = "Sweden";
+lotConfigurations[415] = "6x48.1x5";
+lotNames[416] = "EuroMillions";
+lotCountries[416] = "Switzerland";
+lotConfigurations[416] = "5x50.2x12";
+lotNames[417] = "EuroMillions HotPicks - Pick 1";
+lotCountries[417] = "Switzerland";
+lotConfigurations[417] = "1x50.0x0";
+lotNames[418] = "EuroMillions HotPicks - Pick 2";
+lotCountries[418] = "Switzerland";
+lotConfigurations[418] = "2x50.0x0";
+lotNames[419] = "EuroMillions HotPicks - Pick 3";
+lotCountries[419] = "Switzerland";
+lotConfigurations[419] = "3x50.0x0";
+lotNames[420] = "EuroMillions HotPicks - Pick 4";
+lotCountries[420] = "Switzerland";
+lotConfigurations[420] = "4x50.0x0";
+lotNames[421] = "EuroMillions HotPicks - Pick 5";
+lotCountries[421] = "Switzerland";
+lotConfigurations[421] = "5x50.0x0";
+lotNames[422] = "Lotto";
+lotCountries[422] = "Switzerland";
+lotConfigurations[422] = "6x42.1x6";
+lotNames[423] = "Big Lottery (台灣彩券-大樂透)";
+lotCountries[423] = "Taiwan";
+lotConfigurations[423] = "6x49.0x0";
+lotNames[424] = "Bingo Bingo (賓果賓果) -  1 Star (「1星」)";
+lotCountries[424] = "Taiwan";
+lotConfigurations[424] = "1x80.0x0";
+lotNames[425] = "Bingo Bingo (賓果賓果) -  2 Stars (「2星」)";
+lotCountries[425] = "Taiwan";
+lotConfigurations[425] = "2x80.0x0";
+lotNames[426] = "Bingo Bingo (賓果賓果) -  3 Stars (「3星」)";
+lotCountries[426] = "Taiwan";
+lotConfigurations[426] = "3x80.0x0";
+lotNames[427] = "Bingo Bingo (賓果賓果) -  4 Stars (「4星」)";
+lotCountries[427] = "Taiwan";
+lotConfigurations[427] = "4x80.0x0";
+lotNames[428] = "Bingo Bingo (賓果賓果) -  5 Stars (「5星」)";
+lotCountries[428] = "Taiwan";
+lotConfigurations[428] = "5x80.0x0";
+lotNames[429] = "Bingo Bingo (賓果賓果) -  6 Stars (「6星」)";
+lotCountries[429] = "Taiwan";
+lotConfigurations[429] = "6x80.0x0";
+lotNames[430] = "Bingo Bingo (賓果賓果) -  7 Stars (「7星」)";
+lotCountries[430] = "Taiwan";
+lotConfigurations[430] = "7x80.0x0";
+lotNames[431] = "Bingo Bingo (賓果賓果) -  8 Stars (「8星」)";
+lotCountries[431] = "Taiwan";
+lotConfigurations[431] = "8x80.0x0";
+lotNames[432] = "Bingo Bingo (賓果賓果) -  9 Stars (「9星」)";
+lotCountries[432] = "Taiwan";
+lotConfigurations[432] = "9x80.0x0";
+lotNames[433] = "Bingo Bingo (賓果賓果) - 10 Stars (「10星」)";
+lotCountries[433] = "Taiwan";
+lotConfigurations[433] = "10x80.0x0";
+lotNames[434] = "Everyday 539 Lottery (台灣彩券-今彩539)";
+lotCountries[434] = "Taiwan";
+lotConfigurations[434] = "5x39.0x0";
+lotNames[435] = "Lotto 740 (大福彩)";
+lotCountries[435] = "Taiwan";
+lotConfigurations[435] = "7x40.0x0";
+lotNames[436] = "Power Lottery (台灣彩券-威力彩)";
+lotCountries[436] = "Taiwan";
+lotConfigurations[436] = "6x38.1x8";
+lotNames[437] = "Win-Win Color (雙贏彩)";
+lotCountries[437] = "Taiwan";
+lotConfigurations[437] = "12x24.0x0";
+lotNames[438] = "Lonato - Loto 5/90";
+lotCountries[438] = "Togo";
+lotConfigurations[438] = "5x90.0x0";
+lotNames[439] = "Cashpot";
+lotCountries[439] = "Trinidad and Tobago";
+lotConfigurations[439] = "5x20.0x0";
+lotNames[440] = "Lotto Plus";
+lotCountries[440] = "Trinidad and Tobago";
+lotConfigurations[440] = "5x35.1x10";
+lotNames[441] = "Play Whe";
+lotCountries[441] = "Trinidad and Tobago";
+lotConfigurations[441] = "1x36.0x0";
+lotNames[442] = "On Numara";
+lotCountries[442] = "Turkey";
+lotConfigurations[442] = "10x80.0x0";
+lotNames[443] = "Süper Loto";
+lotCountries[443] = "Turkey";
+lotConfigurations[443] = "6x60.0x0";
+lotNames[444] = "Çılgın Sayısal Loto";
+lotCountries[444] = "Turkey";
+lotConfigurations[444] = "6x90.0x0";
+lotNames[445] = "Şans Topu";
+lotCountries[445] = "Turkey";
+lotConfigurations[445] = "5x34.1x14";
+lotNames[446] = "Keno - Pick  1";
+lotCountries[446] = "Ukraine";
+lotConfigurations[446] = "1x80.0x0";
+lotNames[447] = "Keno - Pick  2";
+lotCountries[447] = "Ukraine";
+lotConfigurations[447] = "2x80.0x0";
+lotNames[448] = "Keno - Pick  3";
+lotCountries[448] = "Ukraine";
+lotConfigurations[448] = "3x80.0x0";
+lotNames[449] = "Keno - Pick  4";
+lotCountries[449] = "Ukraine";
+lotConfigurations[449] = "4x80.0x0";
+lotNames[450] = "Keno - Pick  5";
+lotCountries[450] = "Ukraine";
+lotConfigurations[450] = "5x80.0x0";
+lotNames[451] = "Keno - Pick  6";
+lotCountries[451] = "Ukraine";
+lotConfigurations[451] = "6x80.0x0";
+lotNames[452] = "Keno - Pick  7";
+lotCountries[452] = "Ukraine";
+lotConfigurations[452] = "7x80.0x0";
+lotNames[453] = "Keno - Pick  8";
+lotCountries[453] = "Ukraine";
+lotConfigurations[453] = "8x80.0x0";
+lotNames[454] = "Keno - Pick  9";
+lotCountries[454] = "Ukraine";
+lotConfigurations[454] = "9x80.0x0";
+lotNames[455] = "Keno - Pick 10";
+lotCountries[455] = "Ukraine";
+lotConfigurations[455] = "10x80.0x0";
+lotNames[456] = "Keno - Pick 11";
+lotCountries[456] = "Ukraine";
+lotConfigurations[456] = "11x80.0x0";
+lotNames[457] = "Keno - Pick 12";
+lotCountries[457] = "Ukraine";
+lotConfigurations[457] = "12x80.0x0";
+lotNames[458] = "Megalot";
+lotCountries[458] = "Ukraine";
+lotConfigurations[458] = "6x42.1x10";
+lotNames[459] = "National Lottery";
+lotCountries[459] = "Ukraine";
+lotConfigurations[459] = "6x52.0x0";
+lotNames[460] = "Emirates Draw - Easy 6";
+lotCountries[460] = "United Arab Emirates";
+lotConfigurations[460] = "6x39.0x0";
+lotNames[461] = "Emirates Draw - Mega 7";
+lotCountries[461] = "United Arab Emirates";
+lotConfigurations[461] = "7x37.0x0";
+lotNames[462] = "Mahzooz - Super Saturday";
+lotCountries[462] = "United Arab Emirates";
+lotConfigurations[462] = "5x49.0x0";
+lotNames[463] = "49's Lunchtime or Teatime";
+lotCountries[463] = "United Kingdom";
+lotConfigurations[463] = "6x49.1x49";
+lotNames[464] = "EuroMillions";
+lotCountries[464] = "United Kingdom";
+lotConfigurations[464] = "5x50.2x12";
+lotNames[465] = "EuroMillions HotPicks - Pick 1";
+lotCountries[465] = "United Kingdom";
+lotConfigurations[465] = "1x50.0x0";
+lotNames[466] = "EuroMillions HotPicks - Pick 2";
+lotCountries[466] = "United Kingdom";
+lotConfigurations[466] = "2x50.0x0";
+lotNames[467] = "EuroMillions HotPicks - Pick 3";
+lotCountries[467] = "United Kingdom";
+lotConfigurations[467] = "3x50.0x0";
+lotNames[468] = "EuroMillions HotPicks - Pick 4";
+lotCountries[468] = "United Kingdom";
+lotConfigurations[468] = "4x50.0x0";
+lotNames[469] = "EuroMillions HotPicks - Pick 5";
+lotCountries[469] = "United Kingdom";
+lotConfigurations[469] = "5x50.0x0";
+lotNames[470] = "Health Lottery";
+lotCountries[470] = "United Kingdom";
+lotConfigurations[470] = "5x50.0x0";
+lotNames[471] = "Lotto HotPicks - Pick 1";
+lotCountries[471] = "United Kingdom";
+lotConfigurations[471] = "1x59.0x0";
+lotNames[472] = "Lotto HotPicks - Pick 2";
+lotCountries[472] = "United Kingdom";
+lotConfigurations[472] = "2x59.0x0";
+lotNames[473] = "Lotto HotPicks - Pick 3";
+lotCountries[473] = "United Kingdom";
+lotConfigurations[473] = "3x59.0x0";
+lotNames[474] = "Lotto HotPicks - Pick 4";
+lotCountries[474] = "United Kingdom";
+lotConfigurations[474] = "4x59.0x0";
+lotNames[475] = "Lotto HotPicks - Pick 5";
+lotCountries[475] = "United Kingdom";
+lotConfigurations[475] = "5x59.0x0";
+lotNames[476] = "National Lottery";
+lotCountries[476] = "United Kingdom";
+lotConfigurations[476] = "6x59.0x0";
+lotNames[477] = "Scottish Children's Lottery";
+lotCountries[477] = "United Kingdom";
+lotConfigurations[477] = "5x49.0x0";
+lotNames[478] = "Set for Life";
+lotCountries[478] = "United Kingdom";
+lotConfigurations[478] = "5x47.1x10";
+lotNames[479] = "Thunderball";
+lotCountries[479] = "United Kingdom";
+lotConfigurations[479] = "5x39.1x14";
+lotNames[480] = "Super Lotto";
+lotCountries[480] = "United States Virgin Islands";
+lotConfigurations[480] = "5x35.1x10";
+lotNames[481] = "5 de Oro";
+lotCountries[481] = "Uruguay";
+lotConfigurations[481] = "5x48.0x0";
+lotNames[482] = "All or Nothing (Multi-State)";
+lotCountries[482] = "USA";
+lotConfigurations[482] = "12x24.0x0";
+lotNames[483] = "Arizona - 'The Pick'";
+lotCountries[483] = "USA";
+lotConfigurations[483] = "6x44.0x0";
+lotNames[484] = "Arizona - Fantasy 5";
+lotCountries[484] = "USA";
+lotConfigurations[484] = "5x41.0x0";
+lotNames[485] = "Arizona - Triple Twist";
+lotCountries[485] = "USA";
+lotConfigurations[485] = "6x42.0x0";
+lotNames[486] = "California - Fantasy 5";
+lotCountries[486] = "USA";
+lotConfigurations[486] = "5x39.0x0";
+lotNames[487] = "California - Hot Spot Bulls-Eye -  1 Spot";
+lotCountries[487] = "USA";
+lotConfigurations[487] = "1x80.0x0";
+lotNames[488] = "California - Hot Spot Bulls-Eye -  2 Spots";
+lotCountries[488] = "USA";
+lotConfigurations[488] = "2x80.0x0";
+lotNames[489] = "California - Hot Spot Bulls-Eye -  3 Spots";
+lotCountries[489] = "USA";
+lotConfigurations[489] = "3x80.0x0";
+lotNames[490] = "California - Hot Spot Bulls-Eye -  4 Spots";
+lotCountries[490] = "USA";
+lotConfigurations[490] = "4x80.0x0";
+lotNames[491] = "California - Hot Spot Bulls-Eye -  5 Spots";
+lotCountries[491] = "USA";
+lotConfigurations[491] = "5x80.0x0";
+lotNames[492] = "California - Hot Spot Bulls-Eye -  6 Spot";
+lotCountries[492] = "USA";
+lotConfigurations[492] = "6x80.0x0";
+lotNames[493] = "California - Hot Spot Bulls-Eye -  7 Spot";
+lotCountries[493] = "USA";
+lotConfigurations[493] = "7x80.0x0";
+lotNames[494] = "California - Hot Spot Bulls-Eye -  8 Spots";
+lotCountries[494] = "USA";
+lotConfigurations[494] = "8x80.0x0";
+lotNames[495] = "California - Hot Spot Bulls-Eye -  9 Spots";
+lotCountries[495] = "USA";
+lotConfigurations[495] = "9x80.0x0";
+lotNames[496] = "California - Hot Spot Bulls-Eye - 10 Spots";
+lotCountries[496] = "USA";
+lotConfigurations[496] = "10x80.0x0";
+lotNames[497] = "California - SuperLotto Plus";
+lotCountries[497] = "USA";
+lotConfigurations[497] = "5x47.1x27";
+lotNames[498] = "Cash4Life (Multi-State)";
+lotCountries[498] = "USA";
+lotConfigurations[498] = "5x60.1x4";
+lotNames[499] = "Colorado - Cash 5";
+lotCountries[499] = "USA";
+lotConfigurations[499] = "5x32.0x0";
+lotNames[500] = "Colorado - Lotto";
+lotCountries[500] = "USA";
+lotConfigurations[500] = "6x40.0x0";
+lotNames[501] = "Connecticut - Cash 5";
+lotCountries[501] = "USA";
+lotConfigurations[501] = "5x35.0x0";
+lotNames[502] = "Connecticut - Classic Lotto";
+lotCountries[502] = "USA";
+lotConfigurations[502] = "6x44.0x0";
+lotNames[503] = "Decades of Dollars (Multi-State)";
+lotCountries[503] = "USA";
+lotConfigurations[503] = "6x47.0x0";
+lotNames[504] = "Delaware - Multi-Win Lotto";
+lotCountries[504] = "USA";
+lotConfigurations[504] = "6x35.0x0";
+lotNames[505] = "Florida - Fantasy 5";
+lotCountries[505] = "USA";
+lotConfigurations[505] = "5x36.0x0";
+lotNames[506] = "Florida - Jackpot Triple Play";
+lotCountries[506] = "USA";
+lotConfigurations[506] = "6x46.0x0";
+lotNames[507] = "Florida - Lotto";
+lotCountries[507] = "USA";
+lotConfigurations[507] = "6x53.0x0";
+lotNames[508] = "Georgia - Fantasy 5";
+lotCountries[508] = "USA";
+lotConfigurations[508] = "5x42.0x0";
+lotNames[509] = "Georgia - Jumbo Bucks Lotto";
+lotCountries[509] = "USA";
+lotConfigurations[509] = "6x47.0x0";
+lotNames[510] = "Hot Lotto (Multi-State)";
+lotCountries[510] = "USA";
+lotConfigurations[510] = "5x47.1x19";
+lotNames[511] = "Idaho - Idaho Cash";
+lotCountries[511] = "USA";
+lotConfigurations[511] = "5x45.0x0";
+lotNames[512] = "Idaho - Weekly Grand";
+lotCountries[512] = "USA";
+lotConfigurations[512] = "5x32.0x0";
+lotNames[513] = "Illinois - Lotto";
+lotCountries[513] = "USA";
+lotConfigurations[513] = "6x50.0x0";
+lotNames[514] = "Illinois - Lucky Day Lotto";
+lotCountries[514] = "USA";
+lotConfigurations[514] = "5x45.0x0";
+lotNames[515] = "Indiana - Cash 5";
+lotCountries[515] = "USA";
+lotConfigurations[515] = "5x45.0x0";
+lotNames[516] = "Indiana - Hoosier Lotto";
+lotCountries[516] = "USA";
+lotConfigurations[516] = "6x46.0x0";
+lotNames[517] = "Indiana - Mix & Match";
+lotCountries[517] = "USA";
+lotConfigurations[517] = "5x50.0x0";
+lotNames[518] = "Indiana - Quick Draw";
+lotCountries[518] = "USA";
+lotConfigurations[518] = "10x80.0x0";
+lotNames[519] = "Kansas - Super Cash";
+lotCountries[519] = "USA";
+lotConfigurations[519] = "5x32.1x25";
+lotNames[520] = "Keno - Pick  1";
+lotCountries[520] = "USA";
+lotConfigurations[520] = "1x80.0x0";
+lotNames[521] = "Keno - Pick  2";
+lotCountries[521] = "USA";
+lotConfigurations[521] = "2x80.0x0";
+lotNames[522] = "Keno - Pick  3";
+lotCountries[522] = "USA";
+lotConfigurations[522] = "3x80.0x0";
+lotNames[523] = "Keno - Pick  4";
+lotCountries[523] = "USA";
+lotConfigurations[523] = "4x80.0x0";
+lotNames[524] = "Keno - Pick  5";
+lotCountries[524] = "USA";
+lotConfigurations[524] = "5x80.0x0";
+lotNames[525] = "Keno - Pick  6";
+lotCountries[525] = "USA";
+lotConfigurations[525] = "6x80.0x0";
+lotNames[526] = "Keno - Pick  7";
+lotCountries[526] = "USA";
+lotConfigurations[526] = "7x80.0x0";
+lotNames[527] = "Keno - Pick  8";
+lotCountries[527] = "USA";
+lotConfigurations[527] = "8x80.0x0";
+lotNames[528] = "Keno - Pick  9";
+lotCountries[528] = "USA";
+lotConfigurations[528] = "9x80.0x0";
+lotNames[529] = "Keno - Pick 10";
+lotCountries[529] = "USA";
+lotConfigurations[529] = "10x80.0x0";
+lotNames[530] = "Keno - Pick 11";
+lotCountries[530] = "USA";
+lotConfigurations[530] = "11x80.0x0";
+lotNames[531] = "Keno - Pick 12";
+lotCountries[531] = "USA";
+lotConfigurations[531] = "12x80.0x0";
+lotNames[532] = "Kentucky - Cash Ball";
+lotCountries[532] = "USA";
+lotConfigurations[532] = "4x33.1x31";
+lotNames[533] = "Kentucky - Win For Life";
+lotCountries[533] = "USA";
+lotConfigurations[533] = "6x42.0x0";
+lotNames[534] = "Lotto America (Multi-State)";
+lotCountries[534] = "USA";
+lotConfigurations[534] = "5x52.1x10";
+lotNames[535] = "Louisiana - Easy 5";
+lotCountries[535] = "USA";
+lotConfigurations[535] = "5x37.0x0";
+lotNames[536] = "Louisiana - Lotto";
+lotCountries[536] = "USA";
+lotConfigurations[536] = "6x42.0x0";
+lotNames[537] = "Lucky-for-Life (Multi-State)";
+lotCountries[537] = "USA";
+lotConfigurations[537] = "5x48.1x18";
+lotNames[538] = "Maryland - Bonus Match 5";
+lotCountries[538] = "USA";
+lotConfigurations[538] = "5x39.0x0";
+lotNames[539] = "Maryland - Multi-Match";
+lotCountries[539] = "USA";
+lotConfigurations[539] = "6x43.0x0";
+lotNames[540] = "Massachusetts - Mass Cash";
+lotCountries[540] = "USA";
+lotConfigurations[540] = "5x35.0x0";
+lotNames[541] = "Massachusetts - Megabucks Doubler";
+lotCountries[541] = "USA";
+lotConfigurations[541] = "6x49.0x0";
+lotNames[542] = "Mega Bucks Plus (Multi-State)";
+lotCountries[542] = "USA";
+lotConfigurations[542] = "5x41.1x6";
+lotNames[543] = "Mega Millions (Multi-State)";
+lotCountries[543] = "USA";
+lotConfigurations[543] = "5x70.1x25";
+lotNames[544] = "Michigan - Classic Lotto 47";
+lotCountries[544] = "USA";
+lotConfigurations[544] = "6x47.0x0";
+lotNames[545] = "Michigan - Fantasy 5";
+lotCountries[545] = "USA";
+lotConfigurations[545] = "5x39.0x0";
+lotNames[546] = "Minnesota - Gopher 5";
+lotCountries[546] = "USA";
+lotConfigurations[546] = "5x47.0x0";
+lotNames[547] = "Minnesota - Northstar Cash";
+lotCountries[547] = "USA";
+lotConfigurations[547] = "5x31.0x0";
+lotNames[548] = "Mississippi - Match 5";
+lotCountries[548] = "USA";
+lotConfigurations[548] = "5x35.0x0";
+lotNames[549] = "Missouri - Lotto";
+lotCountries[549] = "USA";
+lotConfigurations[549] = "6x44.0x0";
+lotNames[550] = "Missouri - Show Me Cash";
+lotCountries[550] = "USA";
+lotConfigurations[550] = "5x39.0x0";
+lotNames[551] = "Monopoly Millionaires' Club (Multi-State)";
+lotCountries[551] = "USA";
+lotConfigurations[551] = "5x52.0x0";
+lotNames[552] = "Nebraska - Pick 5";
+lotCountries[552] = "USA";
+lotConfigurations[552] = "5x38.0x0";
+lotNames[553] = "New Jersey - Cash 5";
+lotCountries[553] = "USA";
+lotConfigurations[553] = "5x45.0x0";
+lotNames[554] = "New Jersey - Pick 6";
+lotCountries[554] = "USA";
+lotConfigurations[554] = "6x46.0x0";
+lotNames[555] = "New Mexico - Road Runner Cash";
+lotCountries[555] = "USA";
+lotConfigurations[555] = "5x37.0x0";
+lotNames[556] = "New York - Lotto";
+lotCountries[556] = "USA";
+lotConfigurations[556] = "6x59.0x0";
+lotNames[557] = "New York - Quick Draw - Pick  1";
+lotCountries[557] = "USA";
+lotConfigurations[557] = "1x80.0x0";
+lotNames[558] = "New York - Quick Draw - Pick  2";
+lotCountries[558] = "USA";
+lotConfigurations[558] = "2x80.0x0";
+lotNames[559] = "New York - Quick Draw - Pick  3";
+lotCountries[559] = "USA";
+lotConfigurations[559] = "3x80.0x0";
+lotNames[560] = "New York - Quick Draw - Pick  4";
+lotCountries[560] = "USA";
+lotConfigurations[560] = "4x80.0x0";
+lotNames[561] = "New York - Quick Draw - Pick  5";
+lotCountries[561] = "USA";
+lotConfigurations[561] = "5x80.0x0";
+lotNames[562] = "New York - Quick Draw - Pick  6";
+lotCountries[562] = "USA";
+lotConfigurations[562] = "6x80.0x0";
+lotNames[563] = "New York - Quick Draw - Pick  7";
+lotCountries[563] = "USA";
+lotConfigurations[563] = "7x80.0x0";
+lotNames[564] = "New York - Quick Draw - Pick  8";
+lotCountries[564] = "USA";
+lotConfigurations[564] = "8x80.0x0";
+lotNames[565] = "New York - Quick Draw - Pick  9";
+lotCountries[565] = "USA";
+lotConfigurations[565] = "9x80.0x0";
+lotNames[566] = "New York - Quick Draw - Pick 10";
+lotCountries[566] = "USA";
+lotConfigurations[566] = "10x80.0x0";
+lotNames[567] = "New York - Take 5";
+lotCountries[567] = "USA";
+lotConfigurations[567] = "5x39.0x0";
+lotNames[568] = "North Carolina - Carolina Cash 5";
+lotCountries[568] = "USA";
+lotConfigurations[568] = "5x43.0x0";
+lotNames[569] = "North Dakota - Wild Card 2";
+lotCountries[569] = "USA";
+lotConfigurations[569] = "5x33.1x16";
+lotNames[570] = "Ohio - Classic Lotto";
+lotCountries[570] = "USA";
+lotConfigurations[570] = "6x49.0x0";
+lotNames[571] = "Ohio - Rolling Cash 5";
+lotCountries[571] = "USA";
+lotConfigurations[571] = "5x39.0x0";
+lotNames[572] = "Oklahoma - Cash 5";
+lotCountries[572] = "USA";
+lotConfigurations[572] = "5x36.0x0";
+lotNames[573] = "Oregon - Megabucks";
+lotCountries[573] = "USA";
+lotConfigurations[573] = "6x48.0x0";
+lotNames[574] = "Oregon - Win for Life";
+lotCountries[574] = "USA";
+lotConfigurations[574] = "4x77.0x0";
+lotNames[575] = "Pennsylvania - Cash 5";
+lotCountries[575] = "USA";
+lotConfigurations[575] = "5x43.0x0";
+lotNames[576] = "Pennsylvania - Match 6";
+lotCountries[576] = "USA";
+lotConfigurations[576] = "6x49.0x0";
+lotNames[577] = "Pennsylvania - Mix and Match";
+lotCountries[577] = "USA";
+lotConfigurations[577] = "5x19.0x0";
+lotNames[578] = "Pennsylvania - Treasure Hunt";
+lotCountries[578] = "USA";
+lotConfigurations[578] = "5x30.0x0";
+lotNames[579] = "Powerball (Multi-State)";
+lotCountries[579] = "USA";
+lotConfigurations[579] = "5x69.1x26";
+lotNames[580] = "Publishers Clearing House - Life is Rich (Multi-State)";
+lotCountries[580] = "USA";
+lotConfigurations[580] = "8x54.0x0";
+lotNames[581] = "Publishers Clearing House - Mega Prize (Multi-State)";
+lotCountries[581] = "USA";
+lotConfigurations[581] = "8x60.0x0";
+lotNames[582] = "Publishers Clearing House - Power Prize (Multi-State)";
+lotCountries[582] = "USA";
+lotConfigurations[582] = "8x54.1x24";
+lotNames[583] = "Rhode Island - Wild Money";
+lotCountries[583] = "USA";
+lotConfigurations[583] = "5x38.0x0";
+lotNames[584] = "South Carolina - Palmetto Cash 5";
+lotCountries[584] = "USA";
+lotConfigurations[584] = "5x38.0x0";
+lotNames[585] = "South Dakota - Dakota Cash";
+lotCountries[585] = "USA";
+lotConfigurations[585] = "5x35.0x0";
+lotNames[586] = "Tennessee - Tennessee Cash";
+lotCountries[586] = "USA";
+lotConfigurations[586] = "5x35.1x5";
+lotNames[587] = "Texas - All or Nothing";
+lotCountries[587] = "USA";
+lotConfigurations[587] = "12x24.0x0";
+lotNames[588] = "Texas - Cash Five";
+lotCountries[588] = "USA";
+lotConfigurations[588] = "5x35.0x0";
+lotNames[589] = "Texas - Lotto";
+lotCountries[589] = "USA";
+lotConfigurations[589] = "6x54.0x0";
+lotNames[590] = "Texas - Two Step";
+lotCountries[590] = "USA";
+lotConfigurations[590] = "4x35.1x35";
+lotNames[591] = "Virginia - Bank a Million";
+lotCountries[591] = "USA";
+lotConfigurations[591] = "6x40.0x0";
+lotNames[592] = "Virginia - Cash 5";
+lotCountries[592] = "USA";
+lotConfigurations[592] = "5x41.0x0";
+lotNames[593] = "Washington - Hit 5";
+lotCountries[593] = "USA";
+lotConfigurations[593] = "5x42.0x0";
+lotNames[594] = "Washington - Lotto";
+lotCountries[594] = "USA";
+lotConfigurations[594] = "6x49.0x0";
+lotNames[595] = "Washington - Match 4";
+lotCountries[595] = "USA";
+lotConfigurations[595] = "4x24.0x0";
+lotNames[596] = "Weekly Grand (Multi-State)";
+lotCountries[596] = "USA";
+lotConfigurations[596] = "4x35.1x35";
+lotNames[597] = "West Virginia - Cash 25";
+lotCountries[597] = "USA";
+lotConfigurations[597] = "6x25.0x0";
+lotNames[598] = "Wisconsin - Badger 5";
+lotCountries[598] = "USA";
+lotConfigurations[598] = "5x31.0x0";
+lotNames[599] = "Wisconsin - Megabucks";
+lotCountries[599] = "USA";
+lotConfigurations[599] = "6x49.0x0";
+lotNames[600] = "Wyoming - Cowboy Draw";
+lotCountries[600] = "USA";
+lotConfigurations[600] = "5x45.0x0";
+lotNames[601] = "Yotta Lottery";
+lotCountries[601] = "USA";
+lotConfigurations[601] = "5x99.1x99";
+lotNames[602] = "Mega 6/45";
+lotCountries[602] = "Vietnam";
+lotConfigurations[602] = "6x45.0x0";
+lotNames[603] = "Mega 6/45 -  5 Numbers";
+lotCountries[603] = "Vietnam";
+lotConfigurations[603] = "5x45.0x0";
+lotNames[604] = "Mega 6/45 -  6 Numbers";
+lotCountries[604] = "Vietnam";
+lotConfigurations[604] = "6x45.0x0";
+lotNames[605] = "Mega 6/45 -  7 Numbers";
+lotCountries[605] = "Vietnam";
+lotConfigurations[605] = "7x45.0x0";
+lotNames[606] = "Mega 6/45 -  8 Numbers";
+lotCountries[606] = "Vietnam";
+lotConfigurations[606] = "8x45.0x0";
+lotNames[607] = "Mega 6/45 -  9 Numbers";
+lotCountries[607] = "Vietnam";
+lotConfigurations[607] = "9x45.0x0";
+lotNames[608] = "Mega 6/45 - 10 Numbers";
+lotCountries[608] = "Vietnam";
+lotConfigurations[608] = "10x45.0x0";
+lotNames[609] = "Mega 6/45 - 11 Numbers";
+lotCountries[609] = "Vietnam";
+lotConfigurations[609] = "11x45.0x0";
+lotNames[610] = "Mega 6/45 - 12 Numbers";
+lotCountries[610] = "Vietnam";
+lotConfigurations[610] = "12x45.0x0";
+lotNames[611] = "Mega 6/45 - 13 Numbers";
+lotCountries[611] = "Vietnam";
+lotConfigurations[611] = "13x45.0x0";
+lotNames[612] = "Mega 6/45 - 14 Numbers";
+lotCountries[612] = "Vietnam";
+lotConfigurations[612] = "14x45.0x0";
+lotNames[613] = "Mega 6/45 - 15 Numbers";
+lotCountries[613] = "Vietnam";
+lotConfigurations[613] = "15x45.0x0";
+lotNames[614] = "Mega 6/45 - 18 Numbers";
+lotCountries[614] = "Vietnam";
+lotConfigurations[614] = "18x45.0x0";
+lotNames[615] = "Power 655";
+lotCountries[615] = "Vietnam";
+lotConfigurations[615] = "6x55.0x0";
+lotNames[616] = "World Mega Jackpot";
+lotCountries[616] = "Zambia";
+lotConfigurations[616] = "5x50.2x12";
+lotNames[617] = "Zambia Millions";
+lotCountries[617] = "Zambia";
+lotConfigurations[617] = "6x49.0x0";
+
+function updateForm() {
+
+  var itick = document.getElementById("tick");
+  var icountry = document.getElementById("country");
+  var ilot = document.getElementById("lot");
+  var inum1 = document.getElementById("num1");
+  var imax1 = document.getElementById("max1");
+  var inum2 = document.getElementById("num2");
+  var imax2 = document.getElementById("max2");
+  var iodds = document.getElementById("odds");
+
+  ilot.disabled = false;
+
+  var val = ilot.options[ilot.selectedIndex].value;
+  var tick = itick.options[itick.selectedIndex].value;
+
+  if (val == 'other') {
+
+    inum1.disabled = false;
+    imax1.disabled = false;
+    inum2.disabled = false;
+    imax2.disabled = false;
+
+    n1 = inum1.options[inum1.selectedIndex].value;
+    m1 = imax1.options[imax1.selectedIndex].value;
+    n2 = inum2.options[inum2.selectedIndex].value;
+    m2 = imax2.options[imax2.selectedIndex].value;
+
+  } else {
+
+    var x1 = val.split(".");
+    var x2 = x1[0].split("x");
+
+    var n1 = x2[0];
+    var m1 = x2[1];
+    setSelection(inum1, n1);
+    setSelection(imax1, m1);
+    inum1.disabled = true;
+    imax1.disabled = true;
+
+    x2 = x1[1].split("x");
+    var n2 = x2[0];
+    var m2 = x2[1];
+    setSelection(inum2, n2);
+    setSelection(imax2, m2);
+    inum2.disabled = true;
+    imax2.disabled = true;
+
+    if (inum1.options[inum1.selectedIndex].value != n1 || imax1.options[imax1.selectedIndex].value != m1 || inum2.options[inum2.selectedIndex].value != n2 || imax2.options[imax2.selectedIndex].value != m2) {
+      alert("Oops, there is a bug in the Lottery Quick Pick.\n\nUnfortunately, it won't work for this lottery right now.\n\nIf you are very kind, you can let us know\nby sending an email to contact@random.org");
+    }
+  }
+
+  var odds = 1.0;
+  for (i = 0; i < n1; i++) {
+    odds = odds * ((m1 - i) / (n1 - i));
+  }
+  // ugly hack to calculate odds for lotteries where no powerball is required
+  var lotname = ilot.options[ilot.selectedIndex].innerHTML;
+  if (lotname != "Canadian Ontario 49" && lotname != "Canadian Ontario Lottario") {
+    for (i = 0; i < n2; i++) {
+      odds = odds * ((m2 - i) / (n2 - i));
+    }
+  }
+   console.log(lotname.substring(0, 8));
+   // more ugly hacking for lotteries where we can't calculate the odds correctly
+  if (lotname.substring(0, 9) == "Mega-Sena" ||
+     lotname == "777" ||  lotname == "Lotomania" ||
+     lotname == "EuroMillions HotPicks - Pick 1" || lotname == "EuroMillions HotPicks - Pick 2" || lotname == "EuroMillions HotPicks - Pick 3" || lotname == "EuroMillions HotPicks - Pick 4" ||
+     lotname == "Lotto HotPicks - Pick 1" || lotname == "Lotto HotPicks - Pick 2" || lotname == "Lotto HotPicks - Pick 3" || lotname == "Lotto HotPicks - Pick 4" || lotname == "Lotto HotPicks - Pick 5" ||
+     lotname == "On Numara") {
+    iodds.childNodes[0].nodeValue = "";
+  } else {
+    if (odds != 0) {
+      iodds.childNodes[0].nodeValue = "Your chance of matching all numbers with this combination is " + tick + " in " + Comma(Math.round(odds)) + ".";
+    } else {
+      iodds.childNodes[0].nodeValue = "Pick a lottery to see your chance of winning.";
+    }
+  }
+
+  setSettingsButtons();
+}
+
+function addOption(selectbox, text, value){
+  var optn = document.createElement("OPTION");
+  optn.text = text;
+  optn.value = value;
+  selectbox.options.add(optn);
+}
+
+function updateLotteries() {
+
+  var icountry = document.getElementById("country");
+  var ilot = document.getElementById("lot");
+
+  // lose the previous values
+  for(i = ilot.options.length - 1; i >= 0; i = i - 1) {
+    ilot.remove(i);
+  }
+
+  // add those that apply in this country
+  for(i = 0; i < lotCountries.length; i++) {
+    if (lotCountries[i] == icountry.value) {
+      addOption(ilot, lotNames[i], lotConfigurations[i]);
+    }
+  }
+  addOption(ilot, "Other Lottery", "other");
+}
+
+function saveSettings() {
+  var itick = document.getElementById("tick");
+  var icountry = document.getElementById("country");
+  var ilot = document.getElementById("lot");
+  var inum1 = document.getElementById("num1");
+  var imax1 = document.getElementById("max1");
+  var inum2 = document.getElementById("num2");
+  var imax2 = document.getElementById("max2");
+
+  eraseCookie("tickets", "/quick-pick/");
+  eraseCookie("country", "/quick-pick/");
+  eraseCookie("lottery", "/quick-pick/");
+  eraseCookie("num1", "/quick-pick/");
+  eraseCookie("max1", "/quick-pick/");
+  eraseCookie("num2", "/quick-pick/");
+  eraseCookie("max2", "/quick-pick/");
+
+  createCookie("tickets", itick.options[itick.selectedIndex].value, "/quick-pick/", 36500);
+  createCookie("country", icountry.options[icountry.selectedIndex].text, "/quick-pick/", 36500);
+  createCookie("lottery", ilot.options[ilot.selectedIndex].text, "/quick-pick/", 36500);
+  createCookie("num1", inum1.options[inum1.selectedIndex].value, "/quick-pick/", 36500);
+  createCookie("max1", imax1.options[imax1.selectedIndex].value, "/quick-pick/", 36500);
+  createCookie("num2", inum2.options[inum2.selectedIndex].value, "/quick-pick/", 36500);
+  createCookie("max2", imax2.options[imax2.selectedIndex].value, "/quick-pick/", 36500);
+
+  setSettingsButtons();
+
+  var imsg = document.getElementById("settings-message");
+  imsg.innerHTML = "(settings for " + readCookie("lottery") + " saved)";
+
+//  alert("Settings saved in your browser.");
+}
+
+function restoreSettings() {
+
+  var itick = document.getElementById("tick");
+  var icountry = document.getElementById("country");
+
+  setSelection(itick, readCookie("tickets"));
+  setSelection(icountry, readCookie("country"));
+
+  updateLotteries();
+
+  var ilot = document.getElementById("lot");
+  var inum1 = document.getElementById("num1");
+  var imax1 = document.getElementById("max1");
+  var inum2 = document.getElementById("num2");
+  var imax2 = document.getElementById("max2");
+  setSelectionByText(ilot, readCookie("lottery"));
+  setSelection(inum1, readCookie("num1"));
+  setSelection(imax1, readCookie("max1"));
+  setSelection(inum2, readCookie("num2"));
+  setSelection(imax2, readCookie("max2"));
+
+  updateForm();
+
+  var imsg = document.getElementById("settings-message");
+  imsg.innerHTML = "(settings for " + readCookie("lottery") + " restored)";
+}
+
+function clearSettings() {
+  eraseCookie("tickets", "/quick-pick/");
+  eraseCookie("country", "/quick-pick/");
+  eraseCookie("lottery", "/quick-pick/");
+  eraseCookie("num1", "/quick-pick/");
+  eraseCookie("max1", "/quick-pick/");
+  eraseCookie("num2", "/quick-pick/");
+  eraseCookie("max2", "/quick-pick/");
+
+  setSettingsButtons();
+
+  var imsg = document.getElementById("settings-message");
+  imsg.innerHTML = "(settings cleared)";
+}
+
+function setSettingsButtons() {
+  var isave = document.getElementById("save-settings");
+  var irestore = document.getElementById("restore-settings");
+  var iclear = document.getElementById("clear-settings");
+
+  var itick = document.getElementById("tick");
+  var icountry = document.getElementById("country");
+  var ilot = document.getElementById("lot");
+  var inum1 = document.getElementById("num1");
+  var imax1 = document.getElementById("max1");
+  var inum2 = document.getElementById("num2");
+  var imax2 = document.getElementById("max2");
+
+  var imsg = document.getElementById("settings-message");
+
+  if (!readCookie("tickets")) {
+    isave.disabled = false;
+    irestore.disabled = true;
+    iclear.disabled = true;
+    imsg.innerHTML = "(settings can be saved in your browser)";
+  } else if (itick.options[itick.selectedIndex].value == readCookie("tickets") &&
+             icountry.options[icountry.selectedIndex].value == readCookie("country") &&
+             ilot.options[ilot.selectedIndex].text == readCookie("lottery") &&
+             inum1.options[inum1.selectedIndex].value == readCookie("num1") &&
+             imax1.options[imax1.selectedIndex].value == readCookie("max1") &&
+             inum2.options[inum2.selectedIndex].value == readCookie("num2") &&
+             imax2.options[imax2.selectedIndex].value == readCookie("max2")) {
+    isave.disabled = true;
+    irestore.disabled = true;
+    iclear.disabled = false;
+    imsg.innerHTML = "&nbsp;";
+  } else {
+    isave.disabled = false;
+    irestore.disabled = false;
+    iclear.disabled = false;
+    imsg.innerHTML = "(saved settings for " + readCookie("lottery") + " exist)";
+  }
+}
+
+function setSelection(eid, val) {
+  for (i = 0; i < eid.length; i++) {
+    if (eid.options[i].value == val) {
+      eid.selectedIndex = i;
+    }
+  }
+}
+
+function setSelectionByText(eid, val) {
+  for (i = 0; i < eid.length; i++) {
+    if (eid.options[i].text == val) {
+      eid.selectedIndex = i;
+    }
+  }
+}
+
+function resetForm() {
+
+  var itick = document.getElementById("tick");
+  var icountry = document.getElementById("country");
+
+  setSelection(itick, "2");
+  setSelection(icountry, "USA");
+
+  updateLotteries();
+
+  var ilot = document.getElementById("lot");
+  setSelectionByText(ilot, "Powerball (Multi-State)");
+//  alert("ilot.selectedIndex=" + ilot.selectedIndex);
+
+  updateForm();
+}
+
+function submitForm() {
+
+  var ilot = document.getElementById("lot");
+  var inum1 = document.getElementById("num1");
+  var imax1 = document.getElementById("max1");
+  var inum2 = document.getElementById("num2");
+  var imax2 = document.getElementById("max2");
+
+  var ilottery = document.getElementById("lottery");
+
+  ilottery.value = inum1.options[inum1.selectedIndex].value + "x" + imax1.options[imax1.selectedIndex].value + '.' + inum2.options[inum2.selectedIndex].value + "x" + imax2.options[imax2.selectedIndex].value;
+}
+//-->
+</script>
+</head>
+
+<body>
+
+  <div id="invisible">
+  <ul id="navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#games">Games</a>
+      <ul>
+        <li><a href="/quick-pick/">Lottery Quick Pick</a></li>
+        <li><a href="/keno/">Keno Quick Pick</a></li>
+        <li><a href="/coins/">Coin Flipper</a></li>
+        <li><a href="/dice/">Dice Roller</a></li>
+        <li><a href="/playing-cards/">Playing Card Shuffler</a></li>
+        <li><a href="/birdie-funds/">Birdie Fund Generator</a></li>
+      </ul>
+    </li>
+    <li><a href="/#numbers">Numbers</a>
+      <ul>
+        <li><a href="/integers/">Integers</a></li>
+        <li><a href="/sequences/">Sequences</a></li>
+        <li><a href="/integer-sets/">Integer Sets</a></li>
+        <li><a href="/gaussian-distributions/">Gaussian Numbers</a></li>
+        <li><a href="/decimal-fractions/">Decimal Fractions</a></li>
+        <li><a href="/bytes/">Raw Bytes</a></li>
+      </ul>
+    </li>
+    <li><a href="/#lists">Lists &amp; More</a>
+      <ul>
+        <li><a href="/lists/">List Randomizer</a></li>
+        <li><a href="/strings/">Strings</a></li>
+        <li><a href="/passwords/">Passwords</a></li>
+        <li><a href="/clock-times/">Clock Times</a></li>
+        <li><a href="/calendar-dates/">Calendar Dates</a></li>
+        <li><a href="/geographic-coordinates/">Geographic Coordinates</a></li>
+        <li><a href="/bitmaps/">Bitmaps</a></li>
+        <li><a href="/colors/hex">Hex Color Codes</a></li>
+        <li><a href="/files/">Pregenerated Files</a></li>
+        <li><a href="/jazz-scales/">Jazz Scales</a></li>
+        <li><a href="/audio-noise/">Pure White Audio Noise</a></li>
+        <li><a href="/lessness/">Samuel Beckett</a></li>
+      </ul>
+    </li>
+    <li><a href="/#draws">Drawings</a>
+      <ul>
+        <li><a href="/faq/#Q3.1">How to Pick a Winner (FREE)</a></li>
+        <li><a href="/draws/">Third-Party Draw Service</a></li>
+        <li><a href="/guides/draws/">Step by Step Guide</a></li>
+        <li><a href="/guides/video1/">Step by Step Video</a></li>
+        <li><a href="/draws/pricing/">Price Calculator</a></li>
+        <li><a href="/draws/records/">Public Records</a></li>
+        <li><a href="/draws/description/">Terms and Conditions</a></li>
+        <li><a href="/faq/#S5">Drawing FAQ</a></li>
+      </ul>
+    </li>
+    <li><a href="/#tools">Web Tools</a>
+      <ul>
+        <li><a href="/widgets/">Widgets for Your Pages</a></li>
+        <li><a href="https://api.random.org/">API for Automated Clients</a></li>
+        <li><a href="/clients/http/">Old API for Automated Clients</a></li>
+        <li><a href="/clients/">Old Guidelines for Automated Clients</a></li>
+        <li><a href="/banned-hosts/">Banned Hosts</a></li>
+      </ul>
+    </li>
+    <li><a href="/#statistics">Statistics</a>
+      <ul>
+        <li><a href="/statistics/">Real-Time Statistics</a></li>
+        <li><a href="/statistics/browser/">Graph Browser</a></li>
+        <li><a href="/analysis/">Testing Random Numbers</a></li>
+        <li><a href="/bit-tally/">Total Bit Tally</a></li>
+        <li><a href="/quota/">Your Quota</a></li>
+      </ul>
+    </li>
+    <li><a href="/testimonials/">Testimonials</a>
+      <ul>
+        <li><a href="/testimonials/lotteries/">Lotteries and Drawings</a></li>
+        <li><a href="/testimonials/games/">Games and Gambling</a></li>
+        <li><a href="/testimonials/sampling/">Random Sampling</a></li>
+        <li><a href="/testimonials/simulation/">Simulation and Modelling</a></li>
+        <li><a href="/testimonials/security/">Security</a></li>
+        <li><a href="/testimonials/arts/">The Arts</a></li>
+        <li><a href="/testimonials/miscellaneous/">Miscellaneous</a></li>
+      </ul>
+    </li>
+    <li><a href="/#learn">Learn More</a>
+      <ul>
+        <li><a href="/company/">About &amp; Contact</a></li>
+        <li><a href="/terms/">Terms and Conditions</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/randomness/">Introduction to Randomness</a></li>
+        <li><a href="/history/">History of RANDOM.ORG</a></li>
+        <li><a href="/acknowledgements/">Acknowledgements</a></li>
+        <li><a href="/media/">Media and Scientific Citations</a></li>
+        <li><a href="/newsletter/">Newsletter</a></li>
+        <li><a href="/quotations/">Quotations about Randomness</a></li>
+        <li><a href="/news/">What's New!</a></li>
+      </ul>
+    </li>
+    <li><a href="/account/">Login</a></li>
+  </ul>
+  <div id="search">
+    <form action="https://www.random.org/search" method="get" target="_blank">
+      <div>
+        Search RANDOM.ORG<br />
+        <input type="text" name="q" size="16" />
+        <input type="submit" value="Search" />
+      </div>
+    </form>
+  </div>
+ 
+  <h1><span>True Random Number Service</span></h1>
+  <noscript><p style="background-color:#ffff90;padding: 0em .5em 0em .5em;font-size:.9em"><strong>Warning:</strong> Your browser does not support JavaScript &#8211; RANDOM.ORG may not work as expected</p></noscript>
+  <p style="background-color:#ffff90;padding: 0em .5em 0em .5em"><strong>Advisory:</strong> We only operate services from the RANDOM.ORG domain. Other sites that claim to be operated by us are impostors. If in doubt, <a href='mailto:contact@random.org'>contact us</a>.</p>
+
+<style>  .btn { display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+ .btn-default {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+ }
+ .btn-primary {
+   color:#ffffff;background-color: #428bca;border-color: #357ebd;
+   }
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+  </style>
+<div id="cookie-banner" style="width:100%;position:absolute;top:0;right:0;z-index:10000;border-bottom:1px solid #bce8f1;background-color:#d9edf7;display:none;">
+        <div style="margin: 0px 16px 16px 16px">
+          <p>
+            <strong>RANDOM.ORG Uses Cookies</strong>
+          </p>
+          <p>
+            We use cookies to remember your preferences and to analyze our traffic. We do not carry ads and will never sell your data to third parties.
+          </p>
+          <p>
+            <label class="checkbox-inline"><input type="checkbox" disabled="disabled" class="rdo-input rdo-input-disabled-onload" id="cookie-banner-necessary" value="1" checked="checked">Necessary</input></label>
+            <label class="checkbox-inline"><input type="checkbox" disabled="disabled" class="rdo-input" id="cookie-banner-preferences" value="1">Preferences</input></label>
+            <label class="checkbox-inline"><input type="checkbox" disabled="disabled" class="rdo-input" id="cookie-banner-statistics" value="1">Statistics</input></label>
+          </p>
+          <p style="margin-top:-.3em;margin-bottom:1em;">
+            Please see our <a href="https://www.random.org/terms/2020-08-01/cookies">Cookie Policy</a> or visit our <a href="https://www.random.org/privacy">Privacy Dashboard</a> for more information.
+          </p>
+          <span style="white-space:nowrap;">
+            <button class="btn btn-default btn-xs rdo-input" disabled="disabled" onclick="cookieBanner('selected');">Allow Selected</button>
+            <button class="btn btn-default btn-xs rdo-input" disabled="disabled" onclick="cookieBanner('all');">Allow All</button>
+          </span>
+        </div>
+      </div>
+      
+
+  <h2>Lottery Quick Pick</h2>
+
+  <p>Here is your lottery ticket:</p>
+<pre class="data">15-29-31-33-44 / 04
+</pre>
+<p>Timestamp: 2023-03-26 22:57:55 UTC</p>
+
+    <form method="get" action="">
+      <input type="hidden" name="tickets" value="1" />
+      <input type="hidden" name="lottery" value="5x45.1x20" />
+      <input type="button" onclick="history.go(-1);" value="&larr; Go Back" />
+      <input type="submit" value="Pick Again" />
+<!--      <input type="button" onclick="window.open('http://go.icelotto.com/visit/?r=1&bta=21276&utm_campaign=RandomAgain&landingpage=https%3A//www.icelotto.com/');" value="Buy Lottery Tickets" /> -->
+    </form>
+
+    <p></p>
+
+    <noscript>You must <a
+    href="https://www.google.com/support/adsense/bin/answer.py?answer=12654">enable
+    JavaScript</a> in your web browser before this form will
+    work.</noscript>
+
+    <div class="ruler"></div>
+
+<div style="text-align:center;">
+  <div>&copy; 1998-2023 RANDOM.ORG<br />Follow us: <a href="https://twitter.com/RandomOrg">Twitter</a> | <a href="https://www.facebook.com/RANDOM.ORG">Facebook</a> <!-- | <a href="https://plus.google.com/+RandomOrg">Google+</a> --> <br /><a href="/terms">Terms and Conditions</a><br /><a href="https://www.random.org/company">About Us</a></div>
+</div>
+
+    <script>
+      function cookieBanner(clickedButton) {
+        var consentData = null;
+        if (clickedButton == "selected") {
+          consentData = [true, $('#cookie-banner-preferences').is(':checked'), $('#cookie-banner-statistics').is(':checked')];
+        } else {
+          consentData = [true, true, true];
+        }
+        createCookie('RDOPRIVACY', JSON.stringify(consentData), '/', 365);
+        $('#cookie-banner').fadeOut(800);
+        $.post(
+          "https://www.random.org/privacy/cookie-consent",
+          { consentData : JSON.stringify(consentData), sessionId: readCookie("RDOSESSION") },
+          function(data) {
+            // alert("page content: " + data);
+          }
+        );
+      }
+      /* enable all editable form fields when the page is ready */
+      $(document).ready(function() {
+        $(".rdo-input").attr("disabled", false);
+        $(".rdo-input-disabled-onload").attr("disabled", true);
+      });
+      /* when ready, enable submit buttons - still needed? */
+      $(document).ready(function() { $(".rdo-submit").removeClass("disabled"); });
+      /* if we have a cookie banner, show it */
+      if (document.getElementById("cookie-banner")) {
+        $("#cookie-banner").fadeIn(800);
+      }
+    </script>
+      <!-- no analytics here -->
+
+  </body>
+</html>

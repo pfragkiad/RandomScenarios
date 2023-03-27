@@ -4,7 +4,7 @@ using System.Net;
 
 namespace MoqHttpClient.Extensions;
 
-public static class Factory
+public static class MoqFactory
 {
     //https://github.com/Moq/moq4/wiki/Quickstart
 

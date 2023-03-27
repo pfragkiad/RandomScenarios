@@ -31,14 +31,18 @@ public class RandomOrgLotterySampleFactory
             string sample = _options.GetSamplePath(tag);
             samples.Add(new HttpClientContent(tag, RandomOrgLottery.BaseAddress, File.ReadAllText(sample)));
         }
-        var moqFactory = Factory.GetMockHttpClientFactory(samples);
+
+        var moqFactory = MoqFactory.GetMockHttpClientFactory(samples);
         _httpClientFactory = moqFactory.Object;
     }
 
-    public RandomOrgLottery Get(string tag)
+    public RandomOrgLottery this[string tag]
     {
-        var httpClient = _httpClientFactory.CreateClient(tag);
+        get
+        {
+            var httpClient = _httpClientFactory.CreateClient(tag);
 
-        return new RandomOrgLottery(httpClient, _loggerFactory.CreateLogger<RandomOrgLottery>());
+            return new RandomOrgLottery(httpClient, _loggerFactory.CreateLogger<RandomOrgLottery>());
+        }
     }
 }

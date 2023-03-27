@@ -34,6 +34,8 @@ public class SampleOptions
 
     public IList<SampleEntry>? Samples { get; set; }
 
+    public Dictionary<string, SampleEntry>? SampleDictionary { get => Samples?.ToDictionary(s => s.Tag, s => s); }
+
     public string GetSamplePath(string tag) =>
         Path.Combine(BasePath ?? "", Samples?.FirstOrDefault(x => x.Tag == tag)?.File ?? "");
 }

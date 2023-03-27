@@ -22,8 +22,8 @@ public class RandomOrgLottery
         ILogger<RandomOrgLottery> logger)
     {
         // _httpClient = httpClientFactory.CreateClient(ClientName);
-        _httpClient = httpClient;
-        _logger = logger;
+
+        (_httpClient, _logger) = (httpClient, logger);
     }
 
 
@@ -47,29 +47,33 @@ public class RandomOrgLottery
 <p>Timestamp: 2023-03-26 11:44:05 UTC</p>
        */
 
+
+        /*
+  <h2>Lottery Quick Pick</h2>
+
+  <p>Here is your lottery ticket:</p>
+<pre class="data">01-05-10-17-20 / 04
+</pre>
+<p>Timestamp: 2023-03-26 22:47:30 UTC</p>
+         */
+
         //get a substring of the response to speed up regex
 
-        int start = htmlContent.IndexOf("Here are your");
+        int start = htmlContent.IndexOf("<pre class=\"data\">");
         if (start == -1)
         {
-            _logger.LogWarning("Could not find 'Here are your' text.");
-            return tickets;
-        }
-        start = htmlContent.IndexOf("lottery tickets", start);
-        if (start == -1)
-        {
-            _logger.LogWarning("Could not find 'lottery tickets' text.");
+            _logger.LogWarning("Could not find '<pre class=\"data\">' tag.");
             return tickets;
         }
 
-        int end = htmlContent.IndexOf("Timestamp", start);
+        int end = htmlContent.IndexOf("</pre>", start);
         if (end == -1)
         {
-            _logger.LogWarning("Could not find 'Timestamp' text.");
+            _logger.LogWarning("Could not find end of '</pre>' tag.");
             return tickets;
         }
 
-        htmlContent = htmlContent.Substring(start, end - start);
+        htmlContent = htmlContent[start..end];
 
         var matches = Regex.Matches(htmlContent, @"(?<first>((\d+)-)*(\d+))(\s+/\s+(?<second>((\d+)-)*(\d+)))?");
         if (matches.Any())
@@ -98,14 +102,22 @@ public class RandomOrgLottery
         int firstSetMax, int firstSetCount,
         int secondSetMax, int secondSetCount)
     {
-        //     "https://www.random.org/quick-pick/?tickets=2&lottery=5x45.1x20";
-
-        string query = $"?tickets={ticketsCount}&lottery={firstSetCount}x{firstSetMax}.{secondSetCount}x{secondSetMax}";
+        //"https://www.random.org/quick-pick/?tickets=2&lottery=5x45.1x20";
 
         List<LotteryTicket> tickets = new List<LotteryTicket>();
 
+        if (ticketsCount < 0 || ticketsCount > 100)
+        {
+            _logger.LogCritical("The number {tickets} is out of range. Tickets count must be in teh range [1, 100].", ticketsCount);
+            return tickets;
+        }
+
+        string query = $"?tickets={ticketsCount}&lottery={firstSetCount}x{firstSetMax}.{secondSetCount}x{secondSetMax}";
+
         try
         {
+            _logger.LogInformation("Waiting for response from {address}...", BaseAddress);
+
             string response = await _httpClient.GetStringAsync(query);
             tickets = GetTickets(response);
         }

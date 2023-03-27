@@ -52,7 +52,7 @@ internal class Program
         {
             logger.LogInformation("Sample : {tag}", tag);
 
-            var lottery = lotteryFactory.Get(tag);
+            var lottery = lotteryFactory[tag];
 
             var tickets = await lottery.GetTzokerTickets(2);
             for (int i = 0; i < tickets.Count; i++)
@@ -64,6 +64,12 @@ internal class Program
     {
         //await SampleTests(args);
 
+        await RunRandomOrgTzoker(args);
+
+    }
+
+    private static async Task RunRandomOrgTzoker(string[] args)
+    {
         var app = App.GetApp(args);
         var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
@@ -72,12 +78,11 @@ internal class Program
         Console.Write("Select the number of tickets: ");
         string? response = Console.ReadLine();
         int value = 2;
-        if(!int.TryParse(response, out value))
-            logger.LogWarning("Could not parse response. {v} is assumed!",value);
+        if (!int.TryParse(response, out value))
+            logger.LogWarning("Could not parse response. {v} is assumed!", value);
 
         var tickets = await lottery.GetTzokerTickets(value);
         for (int i = 0; i < tickets.Count; i++)
             logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
-
     }
 }
