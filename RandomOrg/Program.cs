@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MoqHttpClient.Extensions;
 using RandomOrg.Extensions;
+using RandomOrg.Extensions.Queries;
 using System.Diagnostics;
 
 namespace RandomOrg;
@@ -73,7 +75,6 @@ internal class Program
         var app = App.GetApp(args);
         var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
-        var lottery = app.Services.GetRequiredService<RandomOrgLottery>();
 
         Console.Write("Select the number of tickets: ");
         string? response = Console.ReadLine();
@@ -81,7 +82,12 @@ internal class Program
         if (!int.TryParse(response, out value))
             logger.LogWarning("Could not parse response. {v} is assumed!", value);
 
-        var tickets = await lottery.GetTzokerTickets(value);
+        //var lottery = app.Services.GetRequiredService<RandomOrgLottery>();
+        //var tickets = await lottery.GetTzokerTickets(value);
+
+        var mediator = app.Services.GetRequiredService<IMediator>();
+        var tickets = await mediator.Send(new GetTicketsQuery(value));
+
         for (int i = 0; i < tickets.Count; i++)
             logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
     }

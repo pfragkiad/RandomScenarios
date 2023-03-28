@@ -60,8 +60,8 @@ public class App
 
             //random.org http client
             services.AddScoped(s => new HttpClient() { BaseAddress = new Uri("https://www.random.org/quick-pick") });
-            services.AddScoped<RandomOrgLottery>()
-            ;
+            services.AddScoped<RandomOrgLottery>(); 
+            services.AddMediatR(c=> c.RegisterServicesFromAssembly(typeof(RandomOrgLottery).Assembly));
         });
     }
 
