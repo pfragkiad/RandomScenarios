@@ -46,9 +46,10 @@ public class App
             //the sample factory is responsible to retrieve the randomorglottery based on instances of httpclients
             services.AddScoped<RandomOrgLotterySampleFactory>();
 
+            services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(RandomOrgLottery).Assembly));
+
         });
     }
-
 
     public static IHost GetApp(string[] args)
     {
@@ -61,9 +62,8 @@ public class App
             //random.org http client
             services.AddScoped(s => new HttpClient() { BaseAddress = new Uri("https://www.random.org/quick-pick") });
             services.AddScoped<RandomOrgLottery>(); 
+
             services.AddMediatR(c=> c.RegisterServicesFromAssembly(typeof(RandomOrgLottery).Assembly));
         });
     }
-
 }
-

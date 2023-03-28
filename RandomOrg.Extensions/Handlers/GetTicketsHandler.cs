@@ -22,3 +22,18 @@ public class GetTicketsHandler : IRequestHandler<GetTicketsQuery, List<LotteryTi
         return await _lottery.GetTzokerTickets(request.Tickets);
     }
 }
+
+public class GetTicketsSampleHandler : IRequestHandler<GetTicketsSampleQuery, List<LotteryTicket>>
+{
+    private readonly RandomOrgLotterySampleFactory _factory;
+
+    public GetTicketsSampleHandler(RandomOrgLotterySampleFactory factory)
+    {
+        _factory = factory;
+    }
+
+    public async Task<List<LotteryTicket>> Handle(GetTicketsSampleQuery request, CancellationToken cancellationToken)
+    {
+        return await _factory[request.Tag].GetTzokerTickets(0);
+    }
+}

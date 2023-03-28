@@ -9,3 +9,5 @@ namespace RandomOrg.Extensions.Queries;
 
 public record GetTicketsQuery(int Tickets) : IRequest<List<LotteryTicket>>;
 
+public record GetTicketsSampleQuery(string Tag) : IRequest<List<LotteryTicket>>;
+
