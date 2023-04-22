@@ -1,17 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MoqHttpClient.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Xsl;
+using RandomOrg.Domain.Repositories;
 
-namespace RandomOrg.Extensions;
+namespace RandomOrg.Infrastructure.Repositories;
 
-public class RandomOrgLotterySampleFactory
+public class RandomOrgLotterySampleFactory : IRandomOrgLotterySampleFactory
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILoggerFactory _loggerFactory;
@@ -24,6 +18,7 @@ public class RandomOrgLotterySampleFactory
         _loggerFactory = loggerFactory;
         _options = sampleOptions.Value;
 
+        //get client content from cached files
         List<HttpClientContent> samples = new List<HttpClientContent>();
         for (int iSample = 0; iSample < _options?.Samples?.Count; iSample++)
         {
@@ -36,12 +31,11 @@ public class RandomOrgLotterySampleFactory
         _httpClientFactory = moqFactory.Object;
     }
 
-    public RandomOrgLottery this[string tag]
+    public IRandomOrgLottery this[string tag]
     {
         get
         {
             var httpClient = _httpClientFactory.CreateClient(tag);
-
             return new RandomOrgLottery(httpClient, _loggerFactory.CreateLogger<RandomOrgLottery>());
         }
     }

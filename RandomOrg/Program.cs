@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MoqHttpClient.Extensions;
-using RandomOrg.Extensions;
-using RandomOrg.Extensions.Queries;
-using System.Diagnostics;
+using RandomOrg.Application.Queries;
+using RandomOrg.Domain.Repositories;
+using RandomOrg.Infrastructure.Repositories;
+using RandomOrg.Presentation;
 
 namespace RandomOrg;
 
@@ -15,7 +15,7 @@ internal class Program
     static void Test1(string[] args)
     {
 
-        var app = App.GetTestApp(args);
+        var app = App.GetApp(args);
 
         var lottery = app.Services.GetRequiredService<RandomOrgLottery>();
         string htmlContent = File.ReadAllText(@"..\..\..\samples\sample1.html");
@@ -26,10 +26,10 @@ internal class Program
 
     static async Task SampleTests(string[] args)
     {
-        var app = App.GetTestApp(args);
+        var app = App.GetApp(args);
         var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
-        var lotteryFactory = app.Services.GetService<RandomOrgLotterySampleFactory>();
+        var lotteryFactory = app.Services.GetService<IRandomOrgLotterySampleFactory>();
         if (lotteryFactory is null)
         {
             logger.LogCritical("Factory is not defined in the services.");
@@ -58,7 +58,7 @@ internal class Program
 
             //var lottery = lotteryFactory[tag];
             //var tickets = await lottery.GetTzokerTickets(2);
-            var tickets = await mediator.Send(new GetTicketsSampleQuery(tag));
+            var tickets = await mediator.Send(new GetTicketsFromLocalFilesQuery(tag));
 
             for (int i = 0; i < tickets.Count; i++)
                 logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
@@ -88,7 +88,7 @@ internal class Program
         //var tickets = await lottery.GetTzokerTickets(value);
 
         var mediator = app.Services.GetRequiredService<IMediator>();
-        var tickets = await mediator.Send(new GetTicketsQuery(value));
+        var tickets = await mediator.Send(new GetTicketsFromRandomOrgQuery(value));
 
         for (int i = 0; i < tickets.Count; i++)
             logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);

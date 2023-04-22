@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+using RandomOrg.Domain.Models;
+using RandomOrg.Domain.Repositories;
 using System.Text.RegularExpressions;
 
-namespace RandomOrg.Extensions;
+namespace RandomOrg.Infrastructure.Repositories;
 
-public class RandomOrgLottery
+public class RandomOrgLottery : IRandomOrgLottery
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<RandomOrgLottery> _logger;
@@ -91,6 +93,8 @@ public class RandomOrgLottery
         }
         return tickets;
     }
+
+
     //https://www.random.org/quick-pick/?tickets=2&lottery=5x45.1x20
     public async Task<List<LotteryTicket>> GetTzokerTickets(int ticketsCount) =>
        await GetTickets(ticketsCount, 45, 5, 20, 1);
