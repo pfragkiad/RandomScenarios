@@ -1,9 +1,8 @@
 ﻿using RandomOrg.Application;
 
-namespace RandomOrg.Domain.Repositories
+namespace RandomOrg.Domain.Repositories;
+
+public interface IRandomOrgLotterySampleFactory
 {
-    public interface IRandomOrgLotterySampleFactory
-    {
-        IRandomOrgLottery this[string tag] { get; }
-    }
+    IRandomOrgLottery this[string tag] { get; }
 }

@@ -50,8 +50,8 @@ internal class Program
             return;
         }
 
+        //using a GetTicketsFromLocalFilesQuery (mediator)
         var mediator = app.Services.GetRequiredService<IMediator>();
-
         foreach (string tag in options.Samples.Select(s => s.Tag))
         {
             logger.LogInformation("Sample : {tag}", tag);
@@ -63,6 +63,21 @@ internal class Program
             for (int i = 0; i < tickets.Count; i++)
                 logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
         }
+
+        //using
+        foreach (string tag in options.Samples.Select(s => s.Tag))
+        {
+            logger.LogInformation("Sample : {tag}", tag);
+
+            //var lottery = lotteryFactory[tag];
+            //var tickets = await lottery.GetTzokerTickets(2);
+            var tickets = await mediator.Send(new GetTicketsFromLocalFilesQuery(tag));
+
+            for (int i = 0; i < tickets.Count; i++)
+                logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
+        }
+
+
     }
 
     static async Task Main(string[] args)

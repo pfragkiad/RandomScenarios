@@ -27,7 +27,7 @@ public class RandomOrgLotterySampleFactory : IRandomOrgLotterySampleFactory
             samples.Add(new HttpClientContent(tag, RandomOrgLottery.BaseAddress, File.ReadAllText(sample)));
         }
 
-        var moqFactory = MoqFactory.GetMockHttpClientFactory(samples);
+        var moqFactory = MockHttpClientFactory.GetMockHttpClientFactory(samples);
         _httpClientFactory = moqFactory.Object;
     }
 
