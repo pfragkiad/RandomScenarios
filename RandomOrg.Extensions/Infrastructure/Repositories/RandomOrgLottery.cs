@@ -33,6 +33,10 @@ public class RandomOrgLottery : RandomOrgLotteryBase, IRandomOrgLottery
     public async Task<List<LotteryTicket>> GetTzokerTickets(int ticketsCount) =>
        await GetTickets(ticketsCount, 45, 5, 20, 1);
 
+    public async Task<List<LotteryTicket>> GetLottoTickets(int ticketsCount) =>
+        await GetTickets(ticketsCount, 49, 6, 1, 0);
+
+
 
     //https://www.random.org/quick-pick/?tickets=2&lottery=5x45.2x5
     public async Task<List<LotteryTicket>> GetTickets(

@@ -5,16 +5,16 @@ using RandomOrg.Domain.Repositories;
 
 namespace RandomOrg.Application.Handlers;
 
-public class GetTicketsFromRandomOrgHandler : IRequestHandler<GetTicketsFromRandomOrgQuery, List<LotteryTicket>>
+public class GetTzokerTicketsFromRandomOrgHandler : IRequestHandler<GetTzokerTicketsFromRandomOrgQuery, List<LotteryTicket>>
 {
     private readonly IRandomOrgLottery _lottery;
 
-    public GetTicketsFromRandomOrgHandler(IRandomOrgLottery lottery)
+    public GetTzokerTicketsFromRandomOrgHandler(IRandomOrgLottery lottery)
     {
         _lottery = lottery;
     }
 
-    public async Task<List<LotteryTicket>> Handle(GetTicketsFromRandomOrgQuery request, CancellationToken cancellationToken)
+    public async Task<List<LotteryTicket>> Handle(GetTzokerTicketsFromRandomOrgQuery request, CancellationToken cancellationToken)
     {
         return await _lottery.GetTzokerTickets(request.Tickets);
     }

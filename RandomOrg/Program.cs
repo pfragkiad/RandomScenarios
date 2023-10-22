@@ -58,7 +58,7 @@ internal class Program
 
             //var lottery = lotteryFactory[tag];
             //var tickets = await lottery.GetTzokerTickets(2);
-            var tickets = await mediator.Send(new GetTicketsFromLocalFilesQuery(tag));
+            var tickets = await mediator.Send(new GetTzokerTicketsFromLocalFilesQuery(tag));
 
             for (int i = 0; i < tickets.Count; i++)
                 logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
@@ -71,7 +71,7 @@ internal class Program
 
             //var lottery = lotteryFactory[tag];
             //var tickets = await lottery.GetTzokerTickets(2);
-            var tickets = await mediator.Send(new GetTicketsFromLocalFilesQuery(tag));
+            var tickets = await mediator.Send(new GetTzokerTicketsFromLocalFilesQuery(tag));
 
             for (int i = 0; i < tickets.Count; i++)
                 logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
@@ -82,9 +82,9 @@ internal class Program
 
     static async Task Main(string[] args)
     {
-        await SampleTests(args);
+        //await SampleTests(args);
 
-        //await RunRandomOrgTzoker(args);
+        await RunRandomOrgTzoker(args);
     }
 
     private static async Task RunRandomOrgTzoker(string[] args)
@@ -103,7 +103,7 @@ internal class Program
         //var tickets = await lottery.GetTzokerTickets(value);
 
         var mediator = app.Services.GetRequiredService<IMediator>();
-        var tickets = await mediator.Send(new GetTicketsFromRandomOrgQuery(value));
+        var tickets = await mediator.Send(new GetTzokerTicketsFromRandomOrgQuery(value));
 
         for (int i = 0; i < tickets.Count; i++)
             logger.LogInformation("Ticket #{i}: {t}", i + 1, tickets[i]);
