@@ -8,6 +8,7 @@ public static class MockHttpClientFactory
 {
     //https://github.com/Moq/moq4/wiki/Quickstart
 
+
     public static Mock<IHttpClientFactory> GetMockHttpClientFactory(
       Dictionary<string, string> clientNameToContent,
       Dictionary<string, string?>? clientNameToBaseAddress = null)
@@ -21,15 +22,11 @@ public static class MockHttpClientFactory
 
             string? baseAddress = clientNameToBaseAddress?.GetValueOrDefault(clientName);
 
+            //Nice explanation of the protected approach here:
+            //https://www.youtube.com/watch?v=7OFZZAHGv9o 
+
             // Create a mock HttpMessageHandler that returns a predefined response
-            var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
-            mockHttpMessageHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(cachedContent),
-                });
+            Mock<HttpMessageHandler> mockHttpMessageHandler = GetMockHttpMessageHandler(cachedContent);
 
             // Create a HttpClient with the mocked handler
             var httpClient =
@@ -44,6 +41,21 @@ public static class MockHttpClientFactory
         return mockFactory;
     }
 
+    private static Mock<HttpMessageHandler> GetMockHttpMessageHandler(string cachedContent)
+    {
+        var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+        mockHttpMessageHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>(
+            "SendAsync",
+            ItExpr.IsAny<HttpRequestMessage>(), //ItExpr.Is<HttpRequestMessage>(x=> x.RequestUri== new Uri("http://www.random.org"))
+            ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(cachedContent),
+            });
+        return mockHttpMessageHandler;
+    }
 
     public static Mock<IHttpClientFactory> GetMockHttpClientFactory(IEnumerable<HttpClientContent> clients)
         => GetMockHttpClientFactory(

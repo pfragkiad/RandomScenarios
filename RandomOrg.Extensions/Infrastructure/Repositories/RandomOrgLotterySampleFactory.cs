@@ -13,13 +13,14 @@ public class RandomOrgLotterySampleFactory : IRandomOrgLotterySampleFactory
     private readonly SampleOptions? _options;
 
     public RandomOrgLotterySampleFactory(
-        ILoggerFactory loggerFactory, IOptions<SampleOptions> sampleOptions)
+        ILoggerFactory loggerFactory,
+        IOptions<SampleOptions> sampleOptions)
     {
         _loggerFactory = loggerFactory;
         _options = sampleOptions.Value;
 
         //get client content from cached files
-        List<HttpClientContent> samples = new List<HttpClientContent>();
+        List<HttpClientContent> samples = new();
         for (int iSample = 0; iSample < _options?.Samples?.Count; iSample++)
         {
             string tag = _options.Samples[iSample].Tag;
